@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import firebase from 'firebase';
 import StyledAuth from 'react-firebaseui/StyledFirebaseAuth';
+import { fireBaseApiKey, fireBaseAuthDomain } from '../../keys';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 firebase.initializeApp({
-  apiKey: 'AIzaSyCbhqu9i5QYQv1dx-xE29vk72CNrfXmBBs',
-  authDomain: 'ijot-1da7a.firebaseapp.com',
+  apiKey: fireBaseApiKey,
+  authDomain: fireBaseAuthDomain,
 });
 const Sign: React.FC = (): any => {
   const [isSignedIn, setSignIn] = useState(false);
