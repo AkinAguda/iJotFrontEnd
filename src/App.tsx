@@ -1,7 +1,7 @@
 import React from 'react';
-
-const App: React.FC = () => {
-  return <div className="App">Hello</div>;
+import Sign from './components/Sign';
+const App: React.FC = (): any => {
+  return <Sign />;
 };
 
 export default App;
