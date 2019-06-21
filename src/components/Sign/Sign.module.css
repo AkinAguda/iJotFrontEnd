@@ -1,0 +1,10 @@
+.authPage {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  background-color: red;
+}
+.mButton {
+  align-self: center;
+}

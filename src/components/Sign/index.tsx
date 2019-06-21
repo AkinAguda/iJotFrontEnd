@@ -3,6 +3,7 @@ import firebase from 'firebase';
 import StyledAuth from 'react-firebaseui/StyledFirebaseAuth';
 import { fireBaseApiKey, fireBaseAuthDomain } from '../../keys';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
+import Style from './Sign.module.css';
 firebase.initializeApp({
   apiKey: fireBaseApiKey,
   authDomain: fireBaseAuthDomain,
@@ -22,14 +23,16 @@ const Sign: React.FC = (): any => {
     });
   }, []);
   return (
-    <div>
+    <div className={Style.authPage}>
       {isSignedIn ? (
         <button onClick={(): any => firebase.auth().signOut()}>Sign Out</button>
       ) : (
-        <StyledFirebaseAuth
-          uiConfig={uiConfig}
-          firebaseAuth={firebase.auth()}
-        />
+        <div className={Style.mButton}>
+          <StyledFirebaseAuth
+            uiConfig={uiConfig}
+            firebaseAuth={firebase.auth()}
+          />
+        </div>
       )}
     </div>
   );
