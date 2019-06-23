@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import firebase from '../../Firebase';
-import StyledAuth from 'react-firebaseui/StyledFirebaseAuth';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import Style from './Sign.module.css';
 const Sign: React.FC = (): any => {
@@ -9,14 +8,14 @@ const Sign: React.FC = (): any => {
     signInFlow: 'popup',
     signInOptions: [firebase.auth.GoogleAuthProvider.PROVIDER_ID],
     callbacks: {
-      signInSuccessWithAuthResult: (): boolean => false,
+      signInSuccessWithAuthResult: (): any => false,
     },
   };
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user: any) => {
-      setSignIn(!!isSignedIn);
+      setSignIn(!!user);
     });
-  }, [isSignedIn]);
+  }, []);
   return (
     <div className={Style.authPage}>
       {isSignedIn ? (
