@@ -33,7 +33,6 @@ const Sign: React.FC = (): JSX.Element => {
   return (
     <div className={Style.authPage}>
       {isSignedIn ? (
-        // <button onClick={(): any => firebase.auth().signOut()}>Sign Out</button>
         <Home Uid={User.Uid} email={User.email} name={User.name} />
       ) : (
         <div className={Style.mButton}>
