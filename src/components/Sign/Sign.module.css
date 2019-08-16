@@ -1,9 +1,41 @@
-.authPage {
+.container {
   height: 100vh;
-  width: 100vw;
   display: flex;
   justify-content: center;
+  background-color: var(--primary-light);
 }
-.mButton {
+.main {
   align-self: center;
+  text-align: center;
+  width: 80%;
+}
+.main form {
+  margin-top: 50px;
+}
+.main form ~ p {
+  color: rgba(255, 255, 255, 0.5);
+  margin: 8px 0;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+.noaccount {
+  text-transform: none !important;
+  font-size: 18px !important;
+  color: white !important;
+}
+.noaccount a {
+  text-decoration: underline;
+}
+.google img {
+  height: 30px;
+  width: 30px;
+  align-self: center;
+}
+.google span {
+  align-self: center;
+  margin-left: 10px;
+}
+.google {
+  display: flex;
+  justify-content: center;
 }

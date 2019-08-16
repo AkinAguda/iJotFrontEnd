@@ -1,0 +1,16 @@
+.full,
+.light {
+  width: 100%;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 20px;
+  border: none;
+}
+.full {
+  background-color: var(--primary);
+  color: white;
+}
+.light {
+  background-color: white;
+  color: var(--primary);
+}

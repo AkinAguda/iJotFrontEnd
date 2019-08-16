@@ -1,0 +1,36 @@
+.input {
+  padding: 10px 0px 10px 10px;
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: 8px;
+  border-bottom: none;
+  border-left: none;
+  border-right: none;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  color: #665f5f;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+}
+.container {
+  margin-bottom: 7px;
+}
+.passwordType {
+  display: flex;
+}
+.password {
+  width: 80%;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.eye {
+  height: inherit;
+  display: flex;
+  margin: 1px 0;
+  justify-content: center;
+  width: 20%;
+  background-color: white;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  transform: translateX(-2px);
+}
