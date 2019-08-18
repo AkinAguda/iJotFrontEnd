@@ -19,7 +19,7 @@
   display: flex;
 }
 .password {
-  width: 80%;
+  width: 80% !important;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }

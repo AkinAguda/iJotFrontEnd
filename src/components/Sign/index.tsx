@@ -3,11 +3,13 @@ import firebase from '../../Firebase';
 import Styles from './Sign.module.css';
 import Input from '../elements/iNput';
 import Ibutton from '../elements/Ibutton';
+import Pattern from '../elements/Pattern';
 import Home from '../Home';
 import { Users } from '../../interfaces';
 
 const Sign: React.FC = (): JSX.Element => (
   <div className={Styles.container}>
+    <Pattern />
     <div className={Styles.main}>
       <img src="/assets/images/logo.svg" alt="logo" />
       <form>

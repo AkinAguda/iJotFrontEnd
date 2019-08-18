@@ -1,0 +1,9 @@
+.container {
+  height: 40vh;
+  width: 100%;
+  background-image: url(/assets/images/logo-pale.svg);
+  position: fixed;
+  bottom: 0;
+  background-size: 130px;
+  z-index: 1;
+}
