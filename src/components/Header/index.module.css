@@ -1,0 +1,10 @@
+.header {
+  display: flex;
+}
+.header > img {
+  height: 45px;
+  width: 60px;
+}
+.header > button {
+  margin-left: auto;
+}

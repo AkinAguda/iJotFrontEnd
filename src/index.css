@@ -7,7 +7,15 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-html {
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul {
   margin: 0;
   padding: 0;
 }
@@ -19,4 +27,9 @@ code {
 :root {
   --primary: #410e61;
   --primary-light: rgba(65, 14, 97, 0.3);
+  --gradient: linear-gradient(
+    180deg,
+    rgba(238, 170, 194, 0.5) 0%,
+    rgba(65, 14, 97, 0.5) 100%
+  );
 }

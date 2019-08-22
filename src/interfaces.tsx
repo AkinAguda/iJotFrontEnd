@@ -15,4 +15,9 @@ export interface Ibutton {
   light?: boolean;
   circle?: boolean;
   className?: any;
+  sign?: boolean;
+}
+
+export interface SignType {
+  signUp?: boolean;
 }
