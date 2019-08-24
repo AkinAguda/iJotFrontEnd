@@ -1,3 +1,5 @@
+import { RouteComponentProps } from 'react-router';
+
 export interface Users {
   Uid: string | undefined;
   name: string | undefined;
@@ -20,4 +22,8 @@ export interface Ibutton {
 
 export interface SignType {
   signUp?: boolean;
+}
+
+export interface ShellTypeProps extends RouteComponentProps {
+  notes?: boolean;
 }
