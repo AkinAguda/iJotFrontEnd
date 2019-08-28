@@ -7,6 +7,8 @@ const INput: FunctionComponent<Input> = ({
   type = 'text',
   className,
   placeholder,
+  onInput,
+  name,
 }): JSX.Element => {
   const [initialType] = useState(type);
   const [inputType, setInputType] = useState(type);
@@ -20,6 +22,8 @@ const INput: FunctionComponent<Input> = ({
         className={`${Styles.input} ${className && className} ${initialType ===
           'password' && Styles.password}`}
         placeholder={placeholder}
+        onInput={onInput}
+        name={name}
       />
       {initialType === 'password' && (
         <div

@@ -10,12 +10,14 @@ const iButton: React.FunctionComponent<Ibutton> = ({
   children,
   className,
   sign,
+  onClick,
 }): JSX.Element => (
   <>
     {
       <button
         className={`${full && Styles.full} ${light && Styles.light} ${circle &&
           Styles.circle} ${sign && Styles.sign} ${className && className}`}
+        onClick={e => onClick(e)}
       >
         {children}
       </button>

@@ -10,6 +10,8 @@ export interface Input {
   type: string;
   className?: any;
   placeholder?: string;
+  onInput?: any;
+  name?: string;
 }
 
 export interface Ibutton {
@@ -18,6 +20,7 @@ export interface Ibutton {
   circle?: boolean;
   className?: any;
   sign?: boolean;
+  onClick?: any;
 }
 
 export interface SignType {
