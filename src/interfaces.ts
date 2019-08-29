@@ -1,3 +1,4 @@
+import firebase from './Firebase';
 import { RouteComponentProps } from 'react-router';
 
 export interface Users {
@@ -23,10 +24,21 @@ export interface Ibutton {
   onClick?: any;
 }
 
-export interface SignType {
+export interface SignType extends RouteComponentProps {
   signUp?: boolean;
 }
 
 export interface ShellTypeProps extends RouteComponentProps {
   notes?: boolean;
+}
+
+export interface Credentials {
+  email: string;
+  password: string;
+  [x: string]: string;
+}
+
+export interface GoogleFirebaseUserAuthCredentials
+  extends firebase.auth.UserCredential {
+  credential: firebase.auth.OAuthCredential;
 }

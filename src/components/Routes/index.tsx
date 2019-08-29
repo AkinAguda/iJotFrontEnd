@@ -1,12 +1,21 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import { ShellTypeProps } from '../../interfaces';
+import { ShellTypeProps, SignType } from '../../interfaces';
 import Sign from '../Sign';
 import Shell from '../Shell';
 
 const Routes: React.FC = (): JSX.Element => (
   <>
-    <Route path="/" exact={true} component={Sign} />
+    <Route
+      path="/"
+      exact={true}
+      render={(props: SignType): any => <Sign {...props} signUp={true} />}
+    />
+    <Route
+      path="/signin"
+      exact={true}
+      render={(props: SignType): any => <Sign {...props} />}
+    />
     <Route
       path="/notes"
       exact={true}

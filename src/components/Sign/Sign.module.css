@@ -26,6 +26,7 @@
 }
 .noaccount a {
   text-decoration: underline;
+  color: white;
 }
 .google img {
   height: 30px;
