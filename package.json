@@ -43,6 +43,10 @@
     ]
   },
   "devDependencies": {
+    "@types/enzyme": "3.10.3",
+    "enzyme": "3.10.0",
+    "enzyme-adapter-react-16": "1.14.0",
+    "enzyme-to-json": "3.4.0",
     "prettier": "1.18.2",
     "tslint": "5.17.0",
     "tslint-config-prettier": "1.18.0",
