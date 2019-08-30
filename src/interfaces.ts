@@ -1,5 +1,7 @@
+import React from 'react';
 import firebase from './Firebase';
 import { RouteComponentProps } from 'react-router';
+import { RouteProps } from 'react-router';
 
 export interface Users {
   Uid: string | undefined;
@@ -41,4 +43,17 @@ export interface Credentials {
 export interface GoogleFirebaseUserAuthCredentials
   extends firebase.auth.UserCredential {
   credential: firebase.auth.OAuthCredential;
+}
+
+export interface UserStates {
+  isLoggedIn: boolean;
+}
+
+export interface ProtectedRouteType {
+  auth: boolean;
+  to?: any;
+  path: string;
+  component: React.ReactType;
+  exact: boolean;
+  [props: string]: any;
 }

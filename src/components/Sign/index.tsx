@@ -1,5 +1,8 @@
-import React, { useEffect, useState, KeyboardEvent } from 'react';
+import React, { useState, KeyboardEvent } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { LOG_USER_IN } from '../../reducer/actions';
 import { Redirect, Link } from 'react-router-dom';
+import { UserStates } from '../../interfaces';
 import firebase from '../../Firebase';
 import Styles from './Sign.module.css';
 import Input from '../elements/iNput';
@@ -12,7 +15,8 @@ import {
 } from '../../interfaces';
 
 const Sign: React.FC<SignType> = ({ signUp }: SignType): JSX.Element => {
-  const [isSignedIn, setSignIn] = useState(false);
+  const dispatch = useDispatch();
+  const { isLoggedIn } = useSelector((state: UserStates) => state);
   const [emailAndPassword, setEmailAndPassword] = useState({
     email: '',
     password: '',
@@ -25,7 +29,7 @@ const Sign: React.FC<SignType> = ({ signUp }: SignType): JSX.Element => {
         signInCredentials.password,
       )
       .then(() => {
-        setSignIn(true);
+        dispatch({ type: LOG_USER_IN });
       });
   };
   const signUserUp = (signUpCredentials: Credentials): void => {
@@ -36,7 +40,7 @@ const Sign: React.FC<SignType> = ({ signUp }: SignType): JSX.Element => {
         signUpCredentials.password,
       )
       .then(() => {
-        setSignIn(true);
+        dispatch({ type: LOG_USER_IN });
       });
   };
   const handleSubmit = (event: KeyboardEvent<HTMLInputElement>): void => {
@@ -66,19 +70,7 @@ const Sign: React.FC<SignType> = ({ signUp }: SignType): JSX.Element => {
     };
   };
 
-  firebase.auth().onAuthStateChanged((user: any) => {
-    if (user) {
-      setSignIn(true);
-    }
-  });
-  useEffect(() => {
-    firebase.auth().onAuthStateChanged((user: any) => {
-      if (user) {
-        setSignIn(true);
-      }
-    });
-  });
-  return isSignedIn ? (
+  return isLoggedIn ? (
     <Redirect from="/" to="/notes" />
   ) : (
     <div className={Styles.container}>
