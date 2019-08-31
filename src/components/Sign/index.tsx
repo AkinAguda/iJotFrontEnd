@@ -21,7 +21,10 @@ const Sign: React.FC<SignType> = ({ signUp }: SignType): JSX.Element => {
     email: '',
     password: '',
   });
+  const [isLoading, setisLoading] = useState(false);
+  const [isLoadingWithGoogle, setisLoadingWithGoogle] = useState(false);
   const signUserIn = (signInCredentials: Credentials): void => {
+    setisLoading(true);
     firebase
       .auth()
       .signInWithEmailAndPassword(
@@ -29,10 +32,15 @@ const Sign: React.FC<SignType> = ({ signUp }: SignType): JSX.Element => {
         signInCredentials.password,
       )
       .then(() => {
+        setisLoading(false);
         dispatch({ type: LOG_USER_IN });
+      })
+      .catch(() => {
+        setisLoading(false);
       });
   };
   const signUserUp = (signUpCredentials: Credentials): void => {
+    setisLoading(true);
     firebase
       .auth()
       .createUserWithEmailAndPassword(
@@ -40,7 +48,11 @@ const Sign: React.FC<SignType> = ({ signUp }: SignType): JSX.Element => {
         signUpCredentials.password,
       )
       .then(() => {
+        setisLoading(false);
         dispatch({ type: LOG_USER_IN });
+      })
+      .catch(() => {
+        setisLoading(false);
       });
   };
   const handleSubmit = (event: KeyboardEvent<HTMLInputElement>): void => {
@@ -51,6 +63,7 @@ const Sign: React.FC<SignType> = ({ signUp }: SignType): JSX.Element => {
   const handleSubmitFromGoogle = (
     event: KeyboardEvent<HTMLInputElement>,
   ): void => {
+    setisLoadingWithGoogle(true);
     const provider = new firebase.auth.GoogleAuthProvider();
     provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
     firebase.auth().useDeviceLanguage();
@@ -58,8 +71,12 @@ const Sign: React.FC<SignType> = ({ signUp }: SignType): JSX.Element => {
       .auth()
       .signInWithPopup(provider)
       .then((result: GoogleFirebaseUserAuthCredentials) => {
+        setisLoadingWithGoogle(false);
         // const token = result.credential.accessToken;
         // const user = result.user;
+      })
+      .catch(() => {
+        setisLoadingWithGoogle(false);
       });
   };
 
@@ -105,6 +122,7 @@ const Sign: React.FC<SignType> = ({ signUp }: SignType): JSX.Element => {
             onClick={(e: KeyboardEvent<HTMLInputElement>): void =>
               handleSubmit(e)
             }
+            loading={isLoading}
           >
             {signUp ? 'Sign Up' : 'Login'}
           </Ibutton>
@@ -116,6 +134,7 @@ const Sign: React.FC<SignType> = ({ signUp }: SignType): JSX.Element => {
           onClick={(e: KeyboardEvent<HTMLInputElement>): void =>
             handleSubmitFromGoogle(e)
           }
+          loading={isLoadingWithGoogle}
         >
           <img src="/assets/images/google.svg" alt="google" />
           <span>{signUp ? 'Sign Up' : 'Login'}</span>

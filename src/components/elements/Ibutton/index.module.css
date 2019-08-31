@@ -39,3 +39,11 @@
   /* height: auto !important; */
   height: 40px;
 }
+.loader {
+  height: 25px;
+  width: 25px;
+  stroke: var(--primary);
+}
+.lightLoader {
+  stroke: white !important;
+}

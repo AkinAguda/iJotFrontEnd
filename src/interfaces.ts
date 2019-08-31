@@ -24,6 +24,7 @@ export interface Ibutton {
   className?: any;
   sign?: boolean;
   onClick?: any;
+  loading?: boolean;
 }
 
 export interface SignType extends RouteComponentProps {
