@@ -3,7 +3,7 @@ import { UserStates } from '../interfaces';
 import { Action } from 'redux';
 
 const initialState: UserStates = {
-  isLoggedIn: true,
+  isLoggedIn: false,
 };
 
 const reducer = (

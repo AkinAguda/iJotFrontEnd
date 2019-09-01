@@ -59,3 +59,5 @@ export interface ProtectedRouteType {
   exact: boolean;
   [props: string]: any;
 }
+
+export interface RouteProps extends RouteComponentProps {}

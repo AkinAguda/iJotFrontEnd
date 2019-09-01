@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import firebase from '../../Firebase';
 import { LOG_USER_IN } from '../../reducer/actions';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,12 +10,13 @@ import Shell from '../Shell';
 const Routes: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
   const { isLoggedIn } = useSelector((state: UserStates) => state);
+  const [isLoaded, setLoaded] = useState(false);
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user: any) => {
       if (user) {
-        console.log('auth changed')
         dispatch({ type: LOG_USER_IN });
       }
+      setLoaded(true);
     });
   }, []);
 
@@ -37,7 +38,7 @@ const Routes: React.FC = (): JSX.Element => {
       <Redirect to={to || '/signin'} />
     );
 
-  return (
+  return isLoaded ? (
     <>
       <Route
         path="/"
@@ -66,6 +67,8 @@ const Routes: React.FC = (): JSX.Element => {
         edit={true}
       />
     </>
+  ) : (
+    <h1>Loading</h1>
   );
 };
 export default Routes;
