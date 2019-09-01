@@ -1,6 +1,7 @@
 import React from 'react';
 import Sign from '.';
 import reducer from '../../reducer';
+import Ibutton from '../elements/Ibutton';
 import Adapter from 'enzyme-adapter-react-16';
 import { shallow, configure } from 'enzyme';
 import { createStore } from 'redux';

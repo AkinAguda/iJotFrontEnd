@@ -2,11 +2,13 @@ import React from 'react';
 import { ShellTypeProps } from '../../interfaces';
 import Footer from '../Footer';
 import Tile from '../Tile';
+import Edit from '../Edit';
 import Header from '../Header';
 import Styles from './index.module.css';
 
 const Shell: React.FC<ShellTypeProps> = ({
   notes,
+  edit,
 }: ShellTypeProps): JSX.Element => (
   <div className={Styles.container}>
     <main>
@@ -19,6 +21,7 @@ const Shell: React.FC<ShellTypeProps> = ({
             <Tile />
           </>
         )}
+        {edit && <Edit />}
       </div>
     </main>
     <Footer />

@@ -13,6 +13,7 @@ const Routes: React.FC = (): JSX.Element => {
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user: any) => {
       if (user) {
+        console.log('auth changed')
         dispatch({ type: LOG_USER_IN });
       }
     });
@@ -56,6 +57,13 @@ const Routes: React.FC = (): JSX.Element => {
         exact={true}
         component={Shell}
         notes={true}
+      />
+      <ProtectedRoute
+        path="/edit"
+        auth={isLoggedIn}
+        exact={true}
+        component={Shell}
+        edit={true}
       />
     </>
   );

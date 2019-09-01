@@ -33,6 +33,7 @@ export interface SignType extends RouteComponentProps {
 
 export interface ShellTypeProps extends RouteComponentProps {
   notes?: boolean;
+  edit?: boolean;
 }
 
 export interface Credentials {

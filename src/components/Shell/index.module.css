@@ -10,3 +10,7 @@ main {
 .title {
   font-size: 2.3em;
 }
+.content {
+  height: 75vh;
+  overflow-y: scroll;
+}
