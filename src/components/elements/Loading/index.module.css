@@ -1,0 +1,40 @@
+.card {
+  background-color: white;
+  min-width: 177.14px;
+  height: 256.52px;
+  align-self: center;
+  transform: rotate(40.73deg);
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: center;
+  margin: 0 9%;
+  animation: bulge 5s infinite;
+}
+
+.cards {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+}
+
+.container {
+  height: 100vh;
+  width: 100%;
+  background-image: var(--gradient);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+.card img {
+  transform: rotate(-40.73deg);
+  align-self: center;
+}
+
+@keyframes bulge {
+  50% {
+    transform: rotate(40.73deg) scale(1.05);
+  }
+  100% {
+    transform: rotate(40.73deg) scale(1);
+  }
+}

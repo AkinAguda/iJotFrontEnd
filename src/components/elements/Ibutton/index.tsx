@@ -19,9 +19,15 @@ const iButton: React.FunctionComponent<Ibutton> = ({
       <button
         className={`${full && Styles.full} ${light && Styles.light} ${circle &&
           Styles.circle} ${sign && Styles.sign} ${className && className}`}
-        onClick={(
-          e: KeyboardEvent<HTMLButtonElement> | MouseEvent<HTMLButtonElement>,
-        ): any => onClick(e)}
+        onClick={
+          loading
+            ? null
+            : (
+                e:
+                  | KeyboardEvent<HTMLButtonElement>
+                  | MouseEvent<HTMLButtonElement>,
+              ): any => onClick(e)
+        }
       >
         {loading ? (
           <Loader

@@ -6,6 +6,7 @@ import { Route, Redirect } from 'react-router-dom';
 import { SignType, ProtectedRouteType, UserStates } from '../../interfaces';
 import Sign from '../Sign';
 import Shell from '../Shell';
+import Loading from '../elements/Loading';
 
 const Routes: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
@@ -68,7 +69,7 @@ const Routes: React.FC = (): JSX.Element => {
       />
     </>
   ) : (
-    <h1>Loading</h1>
+    <Loading />
   );
 };
 export default Routes;
