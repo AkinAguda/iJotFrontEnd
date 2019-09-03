@@ -61,3 +61,7 @@ export interface ProtectedRouteType {
 }
 
 export interface RouteProps extends RouteComponentProps {}
+
+export interface FooterType {
+  check?: boolean;
+}

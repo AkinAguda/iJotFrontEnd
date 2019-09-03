@@ -24,7 +24,7 @@ const Shell: React.FC<ShellTypeProps> = ({
         {edit && <Edit />}
       </div>
     </main>
-    <Footer />
+    <Footer check={edit ? true : false} />
   </div>
 );
 
