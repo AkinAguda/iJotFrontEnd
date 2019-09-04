@@ -8,17 +8,21 @@ const iButton: React.FunctionComponent<Ibutton> = ({
   full,
   light,
   circle,
+  smallCircle,
   children,
   className,
   sign,
   onClick,
   loading,
+  active,
 }): JSX.Element => (
   <>
     {
       <button
         className={`${full && Styles.full} ${light && Styles.light} ${circle &&
-          Styles.circle} ${sign && Styles.sign} ${className && className}`}
+          Styles.circle} ${smallCircle && Styles.smallCircle} ${sign &&
+          Styles.sign} ${className && className} ${active &&
+          Styles.smallActive}`}
         onClick={
           loading
             ? null

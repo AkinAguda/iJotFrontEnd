@@ -21,10 +21,12 @@ export interface Ibutton {
   full?: boolean;
   light?: boolean;
   circle?: boolean;
+  smallCircle?: boolean;
   className?: any;
   sign?: boolean;
   onClick?: any;
   loading?: boolean;
+  active?: boolean;
 }
 
 export interface SignType extends RouteComponentProps {
@@ -49,6 +51,7 @@ export interface GoogleFirebaseUserAuthCredentials
 
 export interface UserStates {
   isLoggedIn: boolean;
+  bold?: boolean;
 }
 
 export interface ProtectedRouteType {
