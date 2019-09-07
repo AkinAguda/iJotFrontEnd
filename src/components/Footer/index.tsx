@@ -1,11 +1,7 @@
 import React, { useEffect } from 'react';
 import { RichUtils } from 'draft-js';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  MAKE_BOLD,
-  REMOVE_EFFECT,
-  SET_EDITOR_STATE,
-} from '../../reducer/actions';
+import { MAKE_BOLD, REMOVE_EFFECT } from '../../reducer/actions';
 import Ibutton from '../elements/Ibutton';
 import { FooterType, UserStates } from '../../interfaces';
 import { ReactComponent as Check } from '../svgs/check.svg';

@@ -52,8 +52,8 @@ export interface GoogleFirebaseUserAuthCredentials
 
 export interface UserStates {
   isLoggedIn: boolean;
-  bold?: boolean;
-  editorState?: EditorState;
+  bold: boolean;
+  editorState: EditorState;
 }
 
 export interface ProtectedRouteType {

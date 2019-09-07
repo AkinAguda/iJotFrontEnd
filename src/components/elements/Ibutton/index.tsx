@@ -30,7 +30,9 @@ const iButton: React.FunctionComponent<Ibutton> = ({
                 e:
                   | KeyboardEvent<HTMLButtonElement>
                   | MouseEvent<HTMLButtonElement>,
-              ): any => onClick(e)
+              ): void => {
+                onClick(e);
+              }
         }
       >
         {loading ? (

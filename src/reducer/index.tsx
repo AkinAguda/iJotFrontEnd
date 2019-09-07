@@ -6,7 +6,7 @@ import { EditorState, RichUtils } from 'draft-js';
 const initialState: UserStates = {
   isLoggedIn: false,
   bold: false,
-  editorState: EditorState.createEmpty(null),
+  editorState: EditorState.createEmpty(),
 };
 
 const reducer = (

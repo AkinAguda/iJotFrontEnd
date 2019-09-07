@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, MouseEvent } from 'react';
 import Styles from './index.module.css';
 import { SET_EDITOR_STATE, MAKE_BOLD } from '../../reducer/actions';
 // import { useSelector } from 'react-redux';
@@ -15,9 +15,6 @@ const Edit: React.FC = (): JSX.Element => {
   const focusEditor = (): void => {
     editor.current.focus();
   };
-  // useEffect(() => {
-  //   // focusEditor();
-  // }, []);
   // console.log(bold);
   console.log('edit');
   // const makeBold = () => {
@@ -32,11 +29,25 @@ const Edit: React.FC = (): JSX.Element => {
   };
   return (
     <div className={Styles.container}>
-      <Editor
-        editorState={editorState}
-        onChange={setEditorState}
-        ref={editor}
-      />
+      <div className={Styles.title}>
+        <input type="text" value="Lorem Ipsum Title" />
+        <div className={Styles.category}>
+          <div className={Styles.categoryColor} />
+          <div className={Styles.categoryName}>personal</div>
+        </div>
+      </div>
+      <div
+        onClick={(e: MouseEvent<HTMLDivElement>): void => {
+          focusEditor();
+        }}
+        className={Styles.editorWrapper}
+      >
+        <Editor
+          editorState={editorState}
+          onChange={setEditorState}
+          ref={editor}
+        />
+      </div>
     </div>
   );
 };
