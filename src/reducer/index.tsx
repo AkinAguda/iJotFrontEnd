@@ -27,14 +27,14 @@ const reducer = (
     case actions.MAKE_BOLD: {
       return {
         ...state,
-        // bold: true,
+        bold: true,
         editorState: action.payload,
       };
     }
     case actions.REMOVE_EFFECT: {
       return {
         ...state,
-        // bold: false,
+        bold: false,
         editorState: action.payload,
       };
     }
