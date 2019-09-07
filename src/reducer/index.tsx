@@ -1,15 +1,17 @@
 import * as actions from './actions';
 import { UserStates } from '../interfaces';
 import { Action } from 'redux';
+import { EditorState, RichUtils } from 'draft-js';
 
 const initialState: UserStates = {
   isLoggedIn: false,
   bold: false,
+  editorState: EditorState.createEmpty(null),
 };
 
 const reducer = (
   state: UserStates = initialState,
-  action?: Action,
+  action?: any,
 ): UserStates => {
   switch (action.type) {
     case actions.LOG_USER_IN:
@@ -25,13 +27,21 @@ const reducer = (
     case actions.MAKE_BOLD: {
       return {
         ...state,
-        bold: true,
+        // bold: true,
+        editorState: action.payload,
       };
     }
     case actions.REMOVE_EFFECT: {
       return {
         ...state,
-        bold: false,
+        // bold: false,
+        editorState: action.payload,
+      };
+    }
+    case actions.SET_EDITOR_STATE: {
+      return {
+        ...state,
+        editorState: action.payload,
       };
     }
     default:
