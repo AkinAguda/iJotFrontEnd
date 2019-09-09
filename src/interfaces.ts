@@ -54,6 +54,7 @@ export interface UserStates {
   isLoggedIn: boolean;
   bold: boolean;
   editorState: EditorState;
+  noteTitle: string;
 }
 
 export interface ProtectedRouteType {

@@ -11,37 +11,37 @@ import Loading from '../elements/Loading';
 const Routes: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
   const { isLoggedIn } = useSelector((state: UserStates) => state);
-  const [isLoaded, setLoaded] = useState(false);
-  useEffect(() => {
-    firebase.auth().onAuthStateChanged((user: any) => {
-      if (user) {
-        dispatch({ type: LOG_USER_IN });
-      }
-      setLoaded(true);
-    });
-  }, []);
+  const [isLoaded, setLoaded] = useState(true);
+  // useEffect(() => {
+  //   firebase.auth().onAuthStateChanged((user: any) => {
+  //     if (user) {
+  //       dispatch({ type: LOG_USER_IN });
+  //     }
+  //     setLoaded(true);
+  //   });
+  // }, []);
 
-  const ProtectedRoute = ({
-    path,
-    component: Component,
-    auth,
-    exact,
-    to,
-    ...props
-  }: ProtectedRouteType): React.ReactElement =>
-    auth ? (
-      <Route
-        path={path}
-        exact={!!exact}
-        render={(): any => <Component {...props} />}
-      />
-    ) : (
-      <Redirect to={to || '/signin'} />
-    );
+  // const ProtectedRoute = ({
+  //   path,
+  //   component: Component,
+  //   auth,
+  //   exact,
+  //   to,
+  //   ...props
+  // }: ProtectedRouteType): React.ReactElement =>
+  //   auth ? (
+  //     <Route
+  //       path={path}
+  //       exact={!!exact}
+  //       render={(): any => <Component {...props} />}
+  //     />
+  //   ) : (
+  //     <Redirect to={to || '/signin'} />
+  //   );
 
   return isLoaded ? (
     <>
-      <Route
+      {/* <Route
         path="/"
         exact={true}
         render={(props: SignType): React.ReactElement => (
@@ -66,6 +66,11 @@ const Routes: React.FC = (): JSX.Element => {
         exact={true}
         component={Shell}
         edit={true}
+      /> */}
+      <Route
+        path="/edit"
+        exact={true}
+        render={(props): React.ReactElement => <Shell {...props} edit={true} />}
       />
     </>
   ) : (

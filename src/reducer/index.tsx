@@ -7,6 +7,7 @@ const initialState: UserStates = {
   isLoggedIn: false,
   bold: false,
   editorState: EditorState.createEmpty(),
+  noteTitle: '',
 };
 
 const reducer = (
@@ -42,6 +43,12 @@ const reducer = (
       return {
         ...state,
         editorState: action.payload,
+      };
+    }
+    case actions.EDIT_NOTE_TITLE: {
+      return {
+        ...state,
+        noteTitle: action.payload,
       };
     }
     default:
