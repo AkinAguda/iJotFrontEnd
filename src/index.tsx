@@ -1,13 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import reducer from './reducer';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-const store = createStore(reducer);
+const logger = store => {
+  return next => {
+    return action => {
+      console.log('[MIDDLEWARE] Dispatching', action);
+      const result = next(action);
+      console.log('[MIDDLEWARE] next state', store.getState());
+      return result;
+    };
+  };
+};
+
+const store = createStore(reducer, applyMiddleware(logger));
 
 ReactDOM.render(
   <Provider store={store}>

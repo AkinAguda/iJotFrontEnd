@@ -9,7 +9,7 @@ import Styles from './index.module.css';
 
 const Header: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
-  const { isLoggedIn } = useSelector((state: UserStates) => state);
+  // const { isLoggedIn } = useSelector((state: UserStates) => state);
   const signUserOut = (event: KeyboardEvent<HTMLInputElement>): void => {
     event.preventDefault();
     firebase
@@ -19,9 +19,7 @@ const Header: React.FC = (): JSX.Element => {
         dispatch({ type: LOG_USER_OUT });
       });
   };
-  return !isLoggedIn ? (
-    <Redirect from="/notes" to="/" />
-  ) : (
+  return (
     <header>
       <div className={Styles.header}>
         <img src="assets/images/logo.svg" alt="logo" />

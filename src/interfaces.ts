@@ -1,4 +1,5 @@
 import React from 'react';
+import { EditorState } from 'draft-js';
 import firebase from './Firebase';
 import { RouteComponentProps } from 'react-router';
 import { RouteProps } from 'react-router';
@@ -51,7 +52,9 @@ export interface GoogleFirebaseUserAuthCredentials
 
 export interface UserStates {
   isLoggedIn: boolean;
-  bold?: boolean;
+  bold: boolean;
+  editorState: EditorState;
+  noteTitle: string;
 }
 
 export interface ProtectedRouteType {
