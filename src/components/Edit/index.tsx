@@ -1,36 +1,43 @@
-import React, { useState, useRef, useEffect, MouseEvent } from 'react';
+import React, { useState, useRef, useEffect, ChangeEvent } from 'react';
 import Styles from './index.module.css';
-import {
-  SET_EDITOR_STATE,
-  MAKE_BOLD,
-  EDIT_NOTE_TITLE,
-} from '../../reducer/actions';
-// import { useSelector } from 'react-redux';
+import { SET_EDITOR_STATE, EDIT_NOTE_TITLE } from '../../reducer/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { UserStates } from '../../interfaces';
-import { Editor, EditorState, RichUtils } from 'draft-js';
+import { Editor, EditorState } from 'draft-js';
 
 const Edit: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
-  // const [editorState, setEditorState] = useState(EditorState.createEmpty());
-  // const { editorState } = useSelector((state: UserStates) => state);
+  const [shouldFocus, setShouldFocus] = useState(false);
   const { editorState, noteTitle } = useSelector((state: UserStates) => state);
   const editor = useRef(null);
-  const focusEditor = (): void => {
-    editor.current.focus();
+  const title = useRef(null);
+  const focusEditor = (arg: any): void => {
+    arg.current.focus();
   };
-  // console.log(bold);
-  console.log('edit');
-  // const makeBold = () => {
-  //   setEditorState(RichUtils.toggleInlineStyle(editorState, 'BOLD'));
-  // };
-  const setEditorState = state => {
-    console.log('state', state);
+  const setEditorState = (state: EditorState): void => {
     dispatch({
       type: SET_EDITOR_STATE,
       payload: state,
     });
   };
+  const handleInputClick = (): void => {
+    setShouldFocus(true);
+  };
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
+    setShouldFocus(true);
+    dispatch({ type: EDIT_NOTE_TITLE, payload: e.currentTarget.value });
+  };
+  const handleEditorClick = (): void => {
+    setShouldFocus(false);
+    focusEditor(editor);
+  };
+  useEffect(() => {
+    if (!shouldFocus) {
+      focusEditor(editor);
+    } else {
+      focusEditor(title);
+    }
+  });
   return (
     <div className={Styles.container}>
       <div className={Styles.title}>
@@ -38,9 +45,13 @@ const Edit: React.FC = (): JSX.Element => {
           type="text"
           placeholder="Lorem Ipsum Title"
           value={noteTitle}
-          onChange={e => {
-            dispatch({ type: EDIT_NOTE_TITLE, payload: e.currentTarget.value });
+          onChange={(e: ChangeEvent<HTMLInputElement>): void => {
+            handleInputChange(e);
           }}
+          onClick={(): void => {
+            handleInputClick();
+          }}
+          ref={title}
         />
         <div className={Styles.category}>
           <div className={Styles.categoryColor} />
@@ -48,8 +59,8 @@ const Edit: React.FC = (): JSX.Element => {
         </div>
       </div>
       <div
-        onClick={(e: MouseEvent<HTMLDivElement>): void => {
-          focusEditor();
+        onClick={(): void => {
+          handleEditorClick();
         }}
         className={Styles.editorWrapper}
       >
