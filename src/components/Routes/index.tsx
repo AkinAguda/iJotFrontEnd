@@ -3,7 +3,7 @@ import firebase from '../../Firebase';
 import { LOG_USER_IN } from '../../reducer/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Redirect, Switch } from 'react-router-dom';
-import { SignType, ProtectedRouteType, UserStates } from '../../interfaces';
+import { SignType, UserStates } from '../../interfaces';
 import Sign from '../Sign';
 import Shell from '../Shell';
 import Loading from '../elements/Loading';
@@ -19,7 +19,7 @@ const Routes: React.FC = (): JSX.Element => {
       }
       setLoaded(true);
     });
-  }, []);
+  }, [dispatch]);
 
   return isLoaded ? (
     <>
@@ -49,14 +49,14 @@ const Routes: React.FC = (): JSX.Element => {
             <Route
               path="/notes"
               exact={true}
-              render={(props): React.ReactElement => (
+              render={(props: any): React.ReactElement => (
                 <Shell {...props} notes={true} />
               )}
             />
             <Route
               path="/edit"
               exact={true}
-              render={(props): React.ReactElement => (
+              render={(props: any): React.ReactElement => (
                 <Shell {...props} edit={true} />
               )}
             />

@@ -1,7 +1,6 @@
 import * as actions from './actions';
 import { UserStates } from '../interfaces';
-import { Action } from 'redux';
-import { EditorState, RichUtils } from 'draft-js';
+import { EditorState } from 'draft-js';
 
 const initialState: UserStates = {
   isLoggedIn: false,
