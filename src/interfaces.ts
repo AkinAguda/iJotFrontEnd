@@ -67,6 +67,11 @@ export interface ProtectedRouteType {
   [props: string]: any;
 }
 
+export interface CategoryProps {
+  type: string;
+  text?: string;
+}
+
 // export interface RouteProps extends RouteComponentProps {}
 
 export interface FooterType {

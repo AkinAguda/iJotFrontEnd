@@ -29,6 +29,12 @@ code {
   --primary: #410e61;
   --primary-light: rgba(65, 14, 97, 0.3);
   --title: #1d062a;
+  --personal: #166a8e;
+  --personal-light: #e2eef3;
+  --uncategorized: #410e61;
+  --study: #2e8e16;
+  --work: #c88b15;
+  --todo: #8e1d16;
   --gradient: linear-gradient(
     180deg,
     rgba(238, 170, 194, 0.5) 0%,

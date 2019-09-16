@@ -35,7 +35,7 @@ const Footer: React.FC<FooterType> = ({ check }: FooterType): JSX.Element => {
             smallCircle={true}
             onClick={(): void => {
               dispatch({
-                type: bold ? REMOVE_EFFECT : ITALIC,
+                type: italic ? REMOVE_EFFECT : ITALIC,
                 payload: RichUtils.toggleInlineStyle(editorState, 'ITALIC'),
               });
             }}

@@ -1,0 +1,42 @@
+.type {
+  text-transform: capitalize;
+  margin-left: 5px;
+}
+.container {
+  display: flex;
+}
+.uncategorized {
+  color: var(--uncategorized);
+}
+.study {
+  color: var(--study);
+}
+.personal {
+  color: var(--personal);
+}
+.work {
+  color: var(--work);
+}
+.todo {
+  color: var(--todo);
+}
+.circle {
+  min-width: 20px;
+  min-height: 20px;
+  border-radius: 100%;
+}
+.uncategorizedC {
+  background-color: var(--uncategorized);
+}
+.studyC {
+  background-color: var(--study);
+}
+.personalC {
+  background-color: var(--personal);
+}
+.workC {
+  background-color: var(--work);
+}
+.todoC {
+  background-color: var(--todo);
+}

@@ -3,7 +3,7 @@ import { UserStates } from '../interfaces';
 import { EditorState } from 'draft-js';
 
 const initialState: UserStates = {
-  isLoggedIn: false,
+  isLoggedIn: true,
   italic: false,
   bold: false,
   editorState: EditorState.createEmpty(),
