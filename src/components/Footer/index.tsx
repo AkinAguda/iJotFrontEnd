@@ -1,7 +1,7 @@
 import React from 'react';
 import { RichUtils } from 'draft-js';
 import { useDispatch, useSelector } from 'react-redux';
-import { MAKE_BOLD, REMOVE_EFFECT } from '../../reducer/actions';
+import { BOLD, REMOVE_EFFECT, ITALIC } from '../../reducer/actions';
 import Ibutton from '../elements/Ibutton';
 import { FooterType, UserStates } from '../../interfaces';
 import { ReactComponent as Check } from '../svgs/check.svg';
@@ -9,7 +9,9 @@ import Styles from './index.module.css';
 
 const Footer: React.FC<FooterType> = ({ check }: FooterType): JSX.Element => {
   const dispatch = useDispatch();
-  const { bold, editorState } = useSelector((state: UserStates) => state);
+  const { bold, italic, editorState } = useSelector(
+    (state: UserStates) => state,
+  );
   return (
     <footer>
       <div className={Styles.footer}>
@@ -18,7 +20,7 @@ const Footer: React.FC<FooterType> = ({ check }: FooterType): JSX.Element => {
             smallCircle={true}
             onClick={(): void => {
               dispatch({
-                type: bold ? REMOVE_EFFECT : MAKE_BOLD,
+                type: bold ? REMOVE_EFFECT : BOLD,
                 payload: RichUtils.toggleInlineStyle(editorState, 'BOLD'),
               });
             }}
@@ -29,7 +31,16 @@ const Footer: React.FC<FooterType> = ({ check }: FooterType): JSX.Element => {
         )}
         <Ibutton circle={true}>{check ? <Check /> : '+'}</Ibutton>
         {check && (
-          <Ibutton smallCircle={true}>
+          <Ibutton
+            smallCircle={true}
+            onClick={(): void => {
+              dispatch({
+                type: bold ? REMOVE_EFFECT : ITALIC,
+                payload: RichUtils.toggleInlineStyle(editorState, 'ITALIC'),
+              });
+            }}
+            active={italic ? true : false}
+          >
             <i>I</i>
           </Ibutton>
         )}

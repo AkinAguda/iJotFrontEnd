@@ -28,6 +28,7 @@ code {
 :root {
   --primary: #410e61;
   --primary-light: rgba(65, 14, 97, 0.3);
+  --title: #1d062a;
   --gradient: linear-gradient(
     180deg,
     rgba(238, 170, 194, 0.5) 0%,

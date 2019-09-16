@@ -4,6 +4,7 @@ import { EditorState } from 'draft-js';
 
 const initialState: UserStates = {
   isLoggedIn: false,
+  italic: false,
   bold: false,
   editorState: EditorState.createEmpty(),
   noteTitle: '',
@@ -24,10 +25,17 @@ const reducer = (
         ...state,
         isLoggedIn: false,
       };
-    case actions.MAKE_BOLD: {
+    case actions.BOLD: {
       return {
         ...state,
         bold: true,
+        editorState: action.payload,
+      };
+    }
+    case actions.ITALIC: {
+      return {
+        ...state,
+        italic: true,
         editorState: action.payload,
       };
     }

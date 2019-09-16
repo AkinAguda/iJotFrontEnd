@@ -7,7 +7,7 @@ import { Editor, EditorState } from 'draft-js';
 
 const Edit: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
-  const [shouldFocus, setShouldFocus] = useState(false);
+  const [shouldFocus, setShouldFocus] = useState(null);
   const { editorState, noteTitle } = useSelector((state: UserStates) => state);
   const editor = useRef(null);
   const title = useRef(null);
@@ -32,9 +32,9 @@ const Edit: React.FC = (): JSX.Element => {
     focusEditor(editor);
   };
   useEffect(() => {
-    if (!shouldFocus) {
+    if (shouldFocus === false) {
       focusEditor(editor);
-    } else {
+    } else if (shouldFocus === true) {
       focusEditor(title);
     }
   });
