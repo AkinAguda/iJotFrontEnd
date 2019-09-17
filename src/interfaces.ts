@@ -53,6 +53,7 @@ export interface GoogleFirebaseUserAuthCredentials
 export interface UserStates {
   isLoggedIn: boolean;
   bold: boolean;
+  italic: boolean;
   editorState: EditorState;
   noteTitle: string;
 }
@@ -66,7 +67,12 @@ export interface ProtectedRouteType {
   [props: string]: any;
 }
 
-export interface RouteProps extends RouteComponentProps {}
+export interface CategoryProps {
+  type: string;
+  text?: string;
+}
+
+// export interface RouteProps extends RouteComponentProps {}
 
 export interface FooterType {
   check?: boolean;

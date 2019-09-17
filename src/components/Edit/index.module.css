@@ -2,15 +2,9 @@
   width: 100%;
   height: 75vh;
   border-radius: 8px;
-  /* border-top-left-radius: 0;
-  border-top-right-radius: 0; */
   background-color: white;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
 }
-/* .container textarea {
-  width: 100%;
-  height: 100%;
-} */
 .title {
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
@@ -22,25 +16,60 @@
   display: flex;
 }
 .category {
+  text-align: center;
+  display: flex;
+  animation: appear 0.3s;
   background-color: #e2eef3;
-  width: 30%;
+  /* min-width: 30%; */
+  /* width: 40%; */
   border-radius: 20px;
   height: 30px;
   display: flex;
   margin-left: auto;
   justify-content: center;
   padding: 2px;
+  padding-right: 8px;
+}
+.categoryActive {
+  background-color: white;
+}
+.category:hover {
+  cursor: pointer;
 }
 .categoryColor {
   height: 20px;
   width: 20px;
+  margin-left: 5px;
   background-color: #166a8e;
   border-radius: 100%;
   align-self: center;
 }
+.categoryColorActive {
+  display: none;
+}
 .categoryName {
   padding: 4px;
   color: #166a8e;
+}
+.categoryNameActive {
+  display: none;
+}
+.categoryList {
+  visibility: hidden;
+  width: 0px;
+  height: 0px;
+  background-color: white;
+  margin-left: auto;
+  transition: 0.3s;
+  z-index: 4;
+}
+.categoryList > div {
+  margin: 5px 0;
+  padding: 5px 10px;
+}
+.categoryListActive {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  animation: dropDown 0.3s forwards;
 }
 .input {
   padding: 0;
@@ -56,4 +85,14 @@
 }
 .editorWrapper {
   min-height: 89%;
+}
+
+@keyframes dropDown {
+  1% {
+    visibility: visible;
+  }
+  100% {
+    width: 100%;
+    visibility: visible;
+  }
 }

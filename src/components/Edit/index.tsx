@@ -4,12 +4,16 @@ import { SET_EDITOR_STATE, EDIT_NOTE_TITLE } from '../../reducer/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { UserStates } from '../../interfaces';
 import { Editor, EditorState } from 'draft-js';
+import Category from '../elements/Category';
+import { noteTypes } from '../../utils/index';
 
 const Edit: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
-  const [shouldFocus, setShouldFocus] = useState(false);
+  const [dropDownActive, setDropDownActive] = useState(false);
+  const [shouldFocus, setShouldFocus] = useState(null);
   const { editorState, noteTitle } = useSelector((state: UserStates) => state);
   const editor = useRef(null);
+  const categoryList = useRef(null);
   const title = useRef(null);
   const focusEditor = (arg: any): void => {
     arg.current.focus();
@@ -32,9 +36,9 @@ const Edit: React.FC = (): JSX.Element => {
     focusEditor(editor);
   };
   useEffect(() => {
-    if (!shouldFocus) {
+    if (shouldFocus === false) {
       focusEditor(editor);
-    } else {
+    } else if (shouldFocus === true) {
       focusEditor(title);
     }
   });
@@ -53,9 +57,41 @@ const Edit: React.FC = (): JSX.Element => {
           }}
           ref={title}
         />
-        <div className={Styles.category}>
-          <div className={Styles.categoryColor} />
-          <div className={Styles.categoryName}>personal</div>
+        <div
+          className={`${Styles.category} ${dropDownActive &&
+            Styles.categoryActive}`}
+          onClick={(): void => {
+            setDropDownActive(!dropDownActive);
+          }}
+        >
+          <div
+            className={`${Styles.categoryColor} ${dropDownActive &&
+              Styles.categoryColorActive}`}
+          />
+          <div
+            className={`${Styles.categoryName} ${dropDownActive &&
+              Styles.categoryNameActive}`}
+          >
+            personal
+          </div>
+          <div
+            ref={categoryList}
+            className={`${Styles.categoryList} ${dropDownActive &&
+              Styles.categoryListActive}`}
+            style={
+              dropDownActive
+                ? {
+                    height: categoryList.current.scrollHeight,
+                  }
+                : {}
+            }
+          >
+            <Category type={noteTypes.personal} />
+            <Category type={noteTypes.study} />
+            <Category type={noteTypes.uncategorized} />
+            <Category type={noteTypes.todo} />
+            <Category type={noteTypes.work} />
+          </div>
         </div>
       </div>
       <div
