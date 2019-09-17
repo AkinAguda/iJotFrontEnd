@@ -7,3 +7,4 @@ export const ITALIC = 'ITALIC';
 export const REMOVE_EFFECT = 'REMOVE EFFECT';
 export const SET_EDITOR_STATE = 'SET EDITOR STATE';
 export const EDIT_NOTE_TITLE = 'EDIT NOTE TITLE';
+export const REMOVE_STYLING = 'REMOVE STYLING';

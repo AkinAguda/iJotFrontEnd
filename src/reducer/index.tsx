@@ -1,6 +1,6 @@
 import * as actions from './actions';
 import { UserStates } from '../interfaces';
-import { EditorState } from 'draft-js';
+import { EditorState, RichUtils } from 'draft-js';
 
 const initialState: UserStates = {
   isLoggedIn: true,
@@ -56,6 +56,13 @@ const reducer = (
       return {
         ...state,
         noteTitle: action.payload,
+      };
+    }
+    case actions.REMOVE_STYLING: {
+      return {
+        ...state,
+        editorState: action.payload.state,
+        [action.payload.type.toLowerCase()]: false,
       };
     }
     default:

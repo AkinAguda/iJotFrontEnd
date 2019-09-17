@@ -5,3 +5,7 @@ export const noteTypes = {
   work: 'work',
   todo: 'todo',
 };
+export const noteStyles = {
+  BOLD: 'BOLD',
+  ITALIC: 'ITALIC',
+};
