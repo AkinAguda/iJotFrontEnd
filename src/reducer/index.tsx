@@ -1,6 +1,6 @@
 import * as actions from './actions';
 import { UserStates } from '../interfaces';
-import { EditorState, RichUtils } from 'draft-js';
+import { EditorState} from 'draft-js';
 
 const initialState: UserStates = {
   isLoggedIn: true,
@@ -8,6 +8,7 @@ const initialState: UserStates = {
   bold: false,
   editorState: EditorState.createEmpty(),
   noteTitle: '',
+  noteType: 'personal',
 };
 
 const reducer = (
@@ -63,6 +64,12 @@ const reducer = (
         ...state,
         editorState: action.payload.state,
         [action.payload.type.toLowerCase()]: false,
+      };
+    }
+    case actions.SET_NOTE_CATEGORY: {
+      return {
+        ...state,
+        noteType: action.payload,
       };
     }
     default:

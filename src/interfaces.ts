@@ -56,6 +56,7 @@ export interface UserStates {
   italic: boolean;
   editorState: EditorState;
   noteTitle: string;
+  noteType: string;
 }
 
 export interface ProtectedRouteType {
@@ -70,6 +71,8 @@ export interface ProtectedRouteType {
 export interface CategoryProps {
   type: string;
   text?: string;
+  key?: string;
+  onClick?: () => void;
 }
 
 // export interface RouteProps extends RouteComponentProps {}

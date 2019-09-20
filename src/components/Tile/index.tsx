@@ -1,4 +1,5 @@
 import React from 'react';
+import Imodal from '../elements/iModal';
 import Styles from './index.module.css';
 
 const Tile: React.FC = (): JSX.Element => (

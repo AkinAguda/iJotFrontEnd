@@ -4,10 +4,10 @@ import { CategoryProps } from '../../../interfaces';
 import Styles from './index.module.css';
 // tslint:disable-next-line: typedef
 const Category: React.FunctionComponent<CategoryProps> = ({
-  type,
+  type, onClick
 }: CategoryProps) => {
   return (
-    <div className={Styles.container}>
+    <div className={Styles.container} onClick={() => onClick()} role="button" tabIndex={0} onKeyPress={() => onClick()}>
       <div
         className={`${Styles.circle} ${type === noteTypes.uncategorized &&
           Styles.uncategorizedC} ${type === noteTypes.study &&

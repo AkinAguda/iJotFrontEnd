@@ -3,7 +3,6 @@ import { RichUtils } from 'draft-js';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   BOLD,
-  REMOVE_EFFECT,
   ITALIC,
   REMOVE_STYLING,
 } from '../../reducer/actions';

@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, ChangeEvent } from 'react';
 import Styles from './index.module.css';
-import { SET_EDITOR_STATE, EDIT_NOTE_TITLE } from '../../reducer/actions';
+import { SET_EDITOR_STATE, EDIT_NOTE_TITLE, SET_NOTE_CATEGORY } from '../../reducer/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { UserStates } from '../../interfaces';
 import { Editor, EditorState } from 'draft-js';
@@ -11,7 +11,7 @@ const Edit: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
   const [dropDownActive, setDropDownActive] = useState(false);
   const [shouldFocus, setShouldFocus] = useState(null);
-  const { editorState, noteTitle } = useSelector((state: UserStates) => state);
+  const { editorState, noteTitle, noteType } = useSelector((state: UserStates) => state);
   const editor = useRef(null);
   const categoryList = useRef(null);
   const title = useRef(null);
@@ -35,6 +35,9 @@ const Edit: React.FC = (): JSX.Element => {
     setShouldFocus(false);
     focusEditor(editor);
   };
+  const setNoteType = (value: string): void => {
+    dispatch({type: SET_NOTE_CATEGORY, payload: value})
+  }
   useEffect(() => {
     if (shouldFocus === false) {
       focusEditor(editor);
@@ -42,6 +45,7 @@ const Edit: React.FC = (): JSX.Element => {
       focusEditor(title);
     }
   });
+  const notes = [noteTypes.personal, noteTypes.study, noteTypes.uncategorized, noteTypes.todo, noteTypes.work]
   return (
     <div className={Styles.container}>
       <div className={Styles.title}>
@@ -67,12 +71,14 @@ const Edit: React.FC = (): JSX.Element => {
           <div
             className={`${Styles.categoryColor} ${dropDownActive &&
               Styles.categoryColorActive}`}
+              style={{backgroundColor: `var(--${noteType})`}}
           />
           <div
             className={`${Styles.categoryName} ${dropDownActive &&
               Styles.categoryNameActive}`}
+              style={{color: `var(--${noteType})`}}
           >
-            personal
+            {noteType}
           </div>
           <div
             ref={categoryList}
@@ -86,11 +92,7 @@ const Edit: React.FC = (): JSX.Element => {
                 : {}
             }
           >
-            <Category type={noteTypes.personal} />
-            <Category type={noteTypes.study} />
-            <Category type={noteTypes.uncategorized} />
-            <Category type={noteTypes.todo} />
-            <Category type={noteTypes.work} />
+            {notes.map((value) => <Category type={value} key={value} onClick={() => {setNoteType(value)}}/>)}
           </div>
         </div>
       </div>
