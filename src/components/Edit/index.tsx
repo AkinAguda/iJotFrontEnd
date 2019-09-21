@@ -1,6 +1,10 @@
 import React, { useState, useRef, useEffect, ChangeEvent } from 'react';
 import Styles from './index.module.css';
-import { SET_EDITOR_STATE, EDIT_NOTE_TITLE, SET_NOTE_CATEGORY } from '../../reducer/actions';
+import {
+  SET_EDITOR_STATE,
+  EDIT_NOTE_TITLE,
+  SET_NOTE_CATEGORY,
+} from '../../reducer/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { UserStates } from '../../interfaces';
 import { Editor, EditorState } from 'draft-js';
@@ -11,7 +15,9 @@ const Edit: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
   const [dropDownActive, setDropDownActive] = useState(false);
   const [shouldFocus, setShouldFocus] = useState(null);
-  const { editorState, noteTitle, noteType } = useSelector((state: UserStates) => state);
+  const { editorState, noteTitle, noteType } = useSelector(
+    (state: UserStates) => state,
+  );
   const editor = useRef(null);
   const categoryList = useRef(null);
   const title = useRef(null);
@@ -36,8 +42,8 @@ const Edit: React.FC = (): JSX.Element => {
     focusEditor(editor);
   };
   const setNoteType = (value: string): void => {
-    dispatch({type: SET_NOTE_CATEGORY, payload: value})
-  }
+    dispatch({ type: SET_NOTE_CATEGORY, payload: value });
+  };
   useEffect(() => {
     if (shouldFocus === false) {
       focusEditor(editor);
@@ -45,7 +51,13 @@ const Edit: React.FC = (): JSX.Element => {
       focusEditor(title);
     }
   });
-  const notes = [noteTypes.personal, noteTypes.study, noteTypes.uncategorized, noteTypes.todo, noteTypes.work]
+  const notes = [
+    noteTypes.personal,
+    noteTypes.study,
+    noteTypes.uncategorized,
+    noteTypes.todo,
+    noteTypes.work,
+  ];
   return (
     <div className={Styles.container}>
       <div className={Styles.title}>
@@ -67,16 +79,17 @@ const Edit: React.FC = (): JSX.Element => {
           onClick={(): void => {
             setDropDownActive(!dropDownActive);
           }}
+          style={{ backgroundColor: `var(--${noteType}-light)` }}
         >
           <div
             className={`${Styles.categoryColor} ${dropDownActive &&
               Styles.categoryColorActive}`}
-              style={{backgroundColor: `var(--${noteType})`}}
+            style={{ backgroundColor: `var(--${noteType})` }}
           />
           <div
             className={`${Styles.categoryName} ${dropDownActive &&
               Styles.categoryNameActive}`}
-              style={{color: `var(--${noteType})`}}
+            style={{ color: `var(--${noteType})` }}
           >
             {noteType}
           </div>
@@ -92,7 +105,15 @@ const Edit: React.FC = (): JSX.Element => {
                 : {}
             }
           >
-            {notes.map((value) => <Category type={value} key={value} onClick={() => {setNoteType(value)}}/>)}
+            {notes.map((value: string) => (
+              <Category
+                type={value}
+                key={value}
+                onClick={(): void => {
+                  setNoteType(value);
+                }}
+              />
+            ))}
           </div>
         </div>
       </div>
