@@ -11,6 +11,7 @@
     "@types/react-redux": "7.1.2",
     "@types/react-router-dom": "4.3.4",
     "@types/react-test-renderer": "^16.9.0",
+    "dexie": "2.0.4",
     "draft-js": "0.11.0",
     "firebase": "6.2.0",
     "react": "16.9.0",
@@ -47,13 +48,17 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "7.6.0",
+    "@babel/preset-env": "7.6.0",
     "@types/enzyme": "3.10.3",
+    "babel-loader": "8.0.6",
     "enzyme": "3.10.0",
     "enzyme-adapter-react-16": "1.14.0",
     "enzyme-to-json": "3.4.0",
     "prettier": "1.18.2",
     "tslint": "5.17.0",
     "tslint-config-prettier": "1.18.0",
-    "tslint-react": "4.0.0"
+    "tslint-react": "4.0.0",
+    "webpack": "4.40.2"
   }
 }
