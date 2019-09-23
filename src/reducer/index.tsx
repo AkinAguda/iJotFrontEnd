@@ -1,9 +1,11 @@
 import * as actions from './actions';
 import { UserStates } from '../interfaces';
-import { EditorState} from 'draft-js';
+import { EditorState } from 'draft-js';
+import { string } from 'prop-types';
 
 const initialState: UserStates = {
-  isLoggedIn: true,
+  uid: '',
+  isLoggedIn: false,
   italic: false,
   bold: false,
   editorState: EditorState.createEmpty(),
@@ -20,6 +22,7 @@ const reducer = (
       return {
         ...state,
         isLoggedIn: true,
+        uid: action.payload,
       };
     case actions.LOG_USER_OUT:
       return {

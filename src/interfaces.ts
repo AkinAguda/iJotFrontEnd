@@ -2,7 +2,6 @@ import React from 'react';
 import { EditorState } from 'draft-js';
 import firebase from './Firebase';
 import { RouteComponentProps } from 'react-router';
-import { RouteProps } from 'react-router';
 
 export interface Users {
   Uid: string | undefined;
@@ -51,6 +50,7 @@ export interface GoogleFirebaseUserAuthCredentials
 }
 
 export interface UserStates {
+  uid: string;
   isLoggedIn: boolean;
   bold: boolean;
   italic: boolean;
@@ -74,9 +74,15 @@ export interface CategoryProps {
   key?: string;
   onClick?: () => void;
 }
-
 // export interface RouteProps extends RouteComponentProps {}
 
 export interface FooterType {
   check?: boolean;
+}
+
+export interface DBNoteType {
+  noteId: string;
+  category: string;
+  title: string;
+  editorState: EditorState;
 }

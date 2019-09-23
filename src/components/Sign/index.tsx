@@ -4,15 +4,21 @@ import { LOG_USER_IN } from '../../reducer/actions';
 import { Redirect, Link } from 'react-router-dom';
 import { UserStates } from '../../interfaces';
 import firebase from '../../Firebase';
+import Dexie from 'dexie';
 import Styles from './Sign.module.css';
 import Input from '../elements/iNput';
 import Ibutton from '../elements/Ibutton';
 import Pattern from '../elements/Pattern';
+import IndexedDb from '../../utils/indexedDB';
 import {
   SignType,
   Credentials,
   GoogleFirebaseUserAuthCredentials,
 } from '../../interfaces';
+
+interface UserDatabase extends Dexie {
+  appUser?: Dexie.Table<{ id: string; notes: any[] }, number>;
+}
 
 const Sign: React.FC<SignType> = ({ signUp }: SignType): JSX.Element => {
   const dispatch = useDispatch();
@@ -31,9 +37,22 @@ const Sign: React.FC<SignType> = ({ signUp }: SignType): JSX.Element => {
         signInCredentials.email,
         signInCredentials.password,
       )
-      .then(() => {
+      .then((user: firebase.auth.UserCredential) => {
+        const {
+          user: { uid },
+        } = user;
         setisLoading(false);
-        dispatch({ type: LOG_USER_IN });
+        dispatch({ type: LOG_USER_IN, payload: uid });
+        const database = IndexedDb('userDb', ['id', 'notes']);
+        database.put(uid, []);
+        database.getNotes(uid).then(res => console.log(res));
+        // const db: UserDatabase = new Dexie('userDb');
+        // db.version(1).stores({
+        //   appUser: 'id,notes',
+        // });
+        // db.appUser.put({ id: uid, notes: [] }).then(() => {
+        //   console.log('done');
+        // });
       })
       .catch(() => {
         setisLoading(false);
