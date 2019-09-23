@@ -22,17 +22,16 @@ const iButton: React.FunctionComponent<Ibutton> = ({
         className={`${full && Styles.full} ${light && Styles.light} ${circle &&
           Styles.circle} ${smallCircle && Styles.smallCircle} ${sign &&
           Styles.sign} ${className && className} ${active &&
-          Styles.smallActive}`}
-        onClick={
-          loading
-            ? null
-            : (
-                e:
-                  | KeyboardEvent<HTMLButtonElement>
-                  | MouseEvent<HTMLButtonElement>,
-              ): void => {
-                onClick(e);
-              }
+          Styles.smallActive} ${Styles.button}`}
+        onClick={ onClick ? loading
+          ? null
+          : (
+              e:
+                | KeyboardEvent<HTMLButtonElement>
+                | MouseEvent<HTMLButtonElement>,
+            ): void => {
+              onClick(e);
+            } : null
         }
       >
         {loading ? (

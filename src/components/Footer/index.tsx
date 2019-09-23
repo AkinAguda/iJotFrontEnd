@@ -1,6 +1,7 @@
 import React from 'react';
 import { RichUtils } from 'draft-js';
 import { useDispatch, useSelector } from 'react-redux';
+import {Link} from 'react-router-dom';
 import {
   BOLD,
   ITALIC,
@@ -42,7 +43,7 @@ const Footer: React.FC<FooterType> = ({ check }: FooterType): JSX.Element => {
             B
           </Ibutton>
         )}
-        <Ibutton circle={true}>{check ? <Check /> : '+'}</Ibutton>
+        <Ibutton circle={true}>{check ? <Check /> : <Link to="/new">+</Link>}</Ibutton>
         {check && (
           <Ibutton
             smallCircle={true}

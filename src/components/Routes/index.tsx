@@ -60,7 +60,13 @@ const Routes: React.FC = (): JSX.Element => {
                 <Shell {...props} edit={true} />
               )}
             />
-
+              <Route
+              path="/new"
+              exact={true}
+              render={(props: any): React.ReactElement => (
+                <Shell {...props} edit={true} />
+              )}
+            />
             <Route
               path="/signin"
               exact={true}
