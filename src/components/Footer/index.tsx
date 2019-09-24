@@ -1,4 +1,5 @@
 import React from 'react';
+import indexedDB from '../../utils/indexedDB';
 import { RichUtils } from 'draft-js';
 import { useDispatch, useSelector } from 'react-redux';
 import {Link} from 'react-router-dom';
@@ -15,7 +16,7 @@ import { noteStyles } from '../../utils';
 
 const Footer: React.FC<FooterType> = ({ check }: FooterType): JSX.Element => {
   const dispatch = useDispatch();
-  const { bold, italic, editorState } = useSelector(
+  const { bold, italic, editorState, uid, noteTitle, noteType } = useSelector(
     (state: UserStates) => state,
   );
   return (
@@ -43,7 +44,15 @@ const Footer: React.FC<FooterType> = ({ check }: FooterType): JSX.Element => {
             B
           </Ibutton>
         )}
-        <Ibutton circle={true}>{check ? <Check /> : <Link to="/new">+</Link>}</Ibutton>
+        <Ibutton circle={true} onClick={check ? (): void => {
+          const noteId = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+          console.log("uid", uid);
+          indexedDB().put(uid, {[noteId]: {
+          noteId,
+          category: noteType,
+          title: noteTitle,
+          editorState: JSON.stringify(editorState),
+        }}); } : null}>{check ? <Check /> : <Link to="/new">+</Link>}</Ibutton>
         {check && (
           <Ibutton
             smallCircle={true}

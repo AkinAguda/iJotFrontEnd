@@ -1,26 +1,34 @@
 import Dexie from 'dexie';
+import {DBNoteType} from '../interfaces';
+export interface Notes {
+  [noteId: string]: DBNoteType;
+}
 interface UserDatabase extends Dexie {
-  appUser?: Dexie.Table<{ id: string; notes: any[] }, number>;
+  appUser?: Dexie.Table<{ id: string; notes: Notes }, number>;
 }
 
-const IndexedDB = (name: string, schema: string[]) => {
-  const db: UserDatabase = new Dexie(name);
-  db.version(1).stores({
-    appUser: schema.join(','),
-  });
+const db: UserDatabase = new Dexie('UserDb');
+db.version(1).stores({
+  appUser: ['id', 'notes'].join(','),
+});
+
+const IndexedDB = (): any => {
   return {
-    put: (id: string, notes: any[]): void => {
-      db.appUser.put({ id, notes }).then(() => {
-        console.log('Database updted');
+    put: (id: string, notes: Notes): Promise<string> => {
+      return new Promise((resolve: any, reject: any): void => {
+        db.appUser.put({ id, notes }).then(() => {
+          resolve('done');
+        });
       });
     },
-    getNotes: (id: any) => {
-      return new Promise((resolve, reject) => {
-        db.appUser.get(id).then((res: { id: string; notes: any[] }) => {
+    getNotes: (id: any): Promise<unknown> => {
+      return new Promise((resolve: any, reject: any): void => {
+        db.appUser.get(id).then((res: { id: string; notes: Notes }) => {
           resolve(res.notes);
         });
       });
     },
   };
 };
+
 export default IndexedDB;

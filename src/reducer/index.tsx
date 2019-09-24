@@ -1,7 +1,6 @@
 import * as actions from './actions';
 import { UserStates } from '../interfaces';
 import { EditorState } from 'draft-js';
-import { string } from 'prop-types';
 
 const initialState: UserStates = {
   uid: '',

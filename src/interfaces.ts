@@ -84,5 +84,5 @@ export interface DBNoteType {
   noteId: string;
   category: string;
   title: string;
-  editorState: EditorState;
+  editorState: any;
 }
