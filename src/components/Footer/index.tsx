@@ -1,5 +1,5 @@
 import React from 'react';
-import indexedDB from '../../utils/indexedDB';
+import indexedDB, {CollectionType} from '../../utils/indexedDB';
 import { RichUtils } from 'draft-js';
 import { useDispatch, useSelector } from 'react-redux';
 import {Link} from 'react-router-dom';
@@ -13,6 +13,7 @@ import { FooterType, UserStates } from '../../interfaces';
 import { ReactComponent as Check } from '../svgs/check.svg';
 import Styles from './index.module.css';
 import { noteStyles } from '../../utils';
+import LinkedList from '../../utils/linkedList';
 
 const Footer: React.FC<FooterType> = ({ check }: FooterType): JSX.Element => {
   const dispatch = useDispatch();
@@ -44,15 +45,24 @@ const Footer: React.FC<FooterType> = ({ check }: FooterType): JSX.Element => {
             B
           </Ibutton>
         )}
-        <Ibutton circle={true} onClick={check ? (): void => {
+        <Ibutton circle={true} onClick={check ? async (): Promise<void> => {
+          const data = await indexedDB().getNotes(uid);
           const noteId = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-          console.log("uid", uid);
+          let linkedListValue: LinkedList;
+          if (data) {
+            linkedListValue = JSON.parse(data.order);
+            linkedListValue.prepend(noteId);
+          } else {
+            const tempLinkedList = new LinkedList();
+            tempLinkedList.prepend(noteId);
+            linkedListValue = tempLinkedList;
+          }
           indexedDB().put(uid, {[noteId]: {
           noteId,
           category: noteType,
           title: noteTitle,
           editorState: JSON.stringify(editorState),
-        }}); } : null}>{check ? <Check /> : <Link to="/new">+</Link>}</Ibutton>
+        }}, JSON.stringify(linkedListValue)); } : null}>{check ? <Check /> : <Link to="/new">+</Link>}</Ibutton>
         {check && (
           <Ibutton
             smallCircle={true}

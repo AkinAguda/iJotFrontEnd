@@ -63,3 +63,4 @@ class LinkedList {
         return currentNode;
     }
 }
+export default LinkedList;

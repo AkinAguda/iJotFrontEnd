@@ -66,3 +66,4 @@ var LinkedList = /** @class */ (function () {
     }
     return LinkedList;
 }());
+exports["default"] = LinkedList;
