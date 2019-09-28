@@ -9,7 +9,7 @@ import Styles from './Sign.module.css';
 import Input from '../elements/iNput';
 import Ibutton from '../elements/Ibutton';
 import Pattern from '../elements/Pattern';
-import IndexedDb from '../../utils/indexedDB';
+import { Notes } from '../../utils/indexedDB';
 import {
   SignType,
   Credentials,
@@ -17,7 +17,7 @@ import {
 } from '../../interfaces';
 
 interface UserDatabase extends Dexie {
-  appUser?: Dexie.Table<{ id: string; notes: any[] }, number>;
+  appUser?: Dexie.Table<{ id: string; notes: Notes }, number>;
 }
 
 const Sign: React.FC<SignType> = ({ signUp }: SignType): JSX.Element => {
@@ -43,13 +43,10 @@ const Sign: React.FC<SignType> = ({ signUp }: SignType): JSX.Element => {
         } = user;
         setisLoading(false);
         dispatch({ type: LOG_USER_IN, payload: uid });
-        const database = IndexedDb('userDb', ['id', 'notes']);
-        database.put(uid, []);
-        database.getNotes(uid).then(res => console.log(res));
-        // const db: UserDatabase = new Dexie('userDb');
-        // db.version(1).stores({
-        //   appUser: 'id,notes',
-        // });
+        // // const database = IndexedDb('userDb', ['id', 'notes']);
+        // database.put(uid, {});
+        // database.getNotes(uid).then(res => console.log(res));
+        // db.appUser.put({id: uid, notes: {}})
         // db.appUser.put({ id: uid, notes: [] }).then(() => {
         //   console.log('done');
         // });

@@ -15,7 +15,7 @@ const Routes: React.FC = (): JSX.Element => {
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user: any) => {
       if (user) {
-        dispatch({ type: LOG_USER_IN });
+        dispatch({ type: LOG_USER_IN, payload: user.uid });
       }
       setLoaded(true);
     });
