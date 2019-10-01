@@ -1,9 +1,7 @@
-class LinkedListNode {
-    public next: LinkedListNode | null;
-    public prev: LinkedListNode | null;
-    constructor(public value: any) {
-        this.next = null;
-        this.prev = null;
-    }
+export interface LinkedListNodeType {
+  next: null | LinkedListNodeType;
+  prev: null | LinkedListNodeType;
+  length: number;
 }
-export default LinkedListNode;
+
+export default LinkedListNodeType;
