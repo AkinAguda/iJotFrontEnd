@@ -74,7 +74,7 @@ export interface LinkedListType {
 //     }
 // }
 
-const LinkedList = (): LinkedListType => ({
+export const LinkedList = (): LinkedListType => ({
   length: 0,
   head: null,
   tail: null,
