@@ -1,8 +1,7 @@
 import * as firebase from 'firebase';
-import { fireBaseApiKey, fireBaseAuthDomain } from './keys';
 firebase.initializeApp({
-  apiKey: fireBaseApiKey,
-  authDomain: fireBaseAuthDomain,
+  apiKey: process.env.FIREBASE_API_KEY,
+  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
 });
 
 export default firebase;
