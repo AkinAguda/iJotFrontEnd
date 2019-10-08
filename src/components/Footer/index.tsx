@@ -1,19 +1,20 @@
 import React from 'react';
-import indexedDB, {CollectionType} from '../../utils/indexedDB';
+import indexedDB, { CollectionType } from '../../utils/indexedDB';
 import { RichUtils } from 'draft-js';
 import { useDispatch, useSelector } from 'react-redux';
-import {Link} from 'react-router-dom';
-import {
-  BOLD,
-  ITALIC,
-  REMOVE_STYLING,
-} from '../../reducer/actions';
+import { Link } from 'react-router-dom';
+import { BOLD, ITALIC, REMOVE_STYLING } from '../../reducer/actions';
 import Ibutton from '../elements/Ibutton';
 import { FooterType, UserStates } from '../../interfaces';
 import { ReactComponent as Check } from '../svgs/check.svg';
 import Styles from './index.module.css';
 import { noteStyles } from '../../utils';
-import LinkedList from '../../utils/linkedList';
+import {
+  LinkedListNodeType,
+  LinkedListType,
+  append,
+  prepend,
+} from '../../utils/linkedList';
 
 const Footer: React.FC<FooterType> = ({ check }: FooterType): JSX.Element => {
   const dispatch = useDispatch();
@@ -45,24 +46,53 @@ const Footer: React.FC<FooterType> = ({ check }: FooterType): JSX.Element => {
             B
           </Ibutton>
         )}
-        <Ibutton circle={true} onClick={check ? async (): Promise<void> => {
-          const data = await indexedDB().getNotes(uid);
-          const noteId = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-          let linkedListValue: LinkedList;
-          if (data) {
-            linkedListValue = JSON.parse(data.order);
-            linkedListValue.prepend(noteId);
-          } else {
-            const tempLinkedList = new LinkedList();
-            tempLinkedList.prepend(noteId);
-            linkedListValue = tempLinkedList;
+        <Ibutton
+          circle={true}
+          onClick={
+            check
+              ? async (): Promise<void> => {
+                  const data = await indexedDB().getNotes(uid);
+                  const noteId =
+                    Math.random()
+                      .toString(36)
+                      .substring(2, 15) +
+                    Math.random()
+                      .toString(36)
+                      .substring(2, 15);
+                  let linkedListValue: LinkedListType;
+                  if (data) {
+                    console.log(data);
+                    linkedListValue = JSON.parse(data.order);
+                    // linkedListValue.prepend(noteId);
+                    linkedListValue = prepend(linkedListValue, noteId);
+                  } else {
+                    const tempLinkedList: LinkedListType = {
+                      head: null,
+                      tail: null,
+                      length: 0,
+                    };
+                    // tempLinkedList.prepend(noteId);
+                    const newTempLinkedList = prepend(tempLinkedList, noteId);
+                    linkedListValue = newTempLinkedList;
+                  }
+                  indexedDB().put(
+                    uid,
+                    {
+                      [noteId]: {
+                        noteId,
+                        category: noteType,
+                        title: noteTitle,
+                        editorState: JSON.stringify(editorState),
+                      },
+                    },
+                    JSON.stringify(linkedListValue),
+                  );
+                }
+              : null
           }
-          indexedDB().put(uid, {[noteId]: {
-          noteId,
-          category: noteType,
-          title: noteTitle,
-          editorState: JSON.stringify(editorState),
-        }}, JSON.stringify(linkedListValue)); } : null}>{check ? <Check /> : <Link to="/new">+</Link>}</Ibutton>
+        >
+          {check ? <Check /> : <Link to="/new">+</Link>}
+        </Ibutton>
         {check && (
           <Ibutton
             smallCircle={true}
