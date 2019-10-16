@@ -20,7 +20,7 @@ const Shell: React.FC<ShellTypeProps> = ({
       .then((data: CollectionType) => {
         setAllNotes({ ...data });
       });
-  }, []);
+  }, [uid]);
   console.log('ALL', allNotes);
   return (
     <div className={Styles.container}>
@@ -32,10 +32,10 @@ const Shell: React.FC<ShellTypeProps> = ({
             (allNotes && (
               <>
                 {allNotes.order &&
-                  allNotes.order.map((id: string) => (
+                  JSON.parse(allNotes.order).map((id: string) => (
                     <Tile
                       key={Math.random()}
-                      editorState={allNotes.notes[id].editorState}
+                      editorState={JSON.parse(allNotes.notes[id].editorState)}
                       noteId={id}
                       category={allNotes.notes[id].category}
                       title={allNotes.notes[id].title}

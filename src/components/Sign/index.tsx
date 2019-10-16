@@ -4,7 +4,6 @@ import { LOG_USER_IN } from '../../reducer/actions';
 import { Redirect, Link } from 'react-router-dom';
 import { UserStates } from '../../interfaces';
 import firebase from '../../Firebase';
-import Dexie from 'dexie';
 import Styles from './Sign.module.css';
 import Input from '../elements/iNput';
 import Ibutton from '../elements/Ibutton';

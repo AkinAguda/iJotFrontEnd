@@ -9,7 +9,6 @@ import { FooterType, UserStates } from '../../interfaces';
 import { ReactComponent as Check } from '../svgs/check.svg';
 import Styles from './index.module.css';
 import { noteStyles } from '../../utils';
-import { remove } from '../../utils/linkedList';
 
 const Footer: React.FC<FooterType> = ({ check }: FooterType): JSX.Element => {
   const dispatch = useDispatch();
@@ -47,6 +46,7 @@ const Footer: React.FC<FooterType> = ({ check }: FooterType): JSX.Element => {
             check
               ? async (): Promise<void> => {
                   const data = await indexedDB().getNotes(uid);
+                  let noteCollection = {};
                   const noteId =
                     Math.random()
                       .toString(36)
@@ -56,19 +56,22 @@ const Footer: React.FC<FooterType> = ({ check }: FooterType): JSX.Element => {
                       .substring(2, 15);
                   let linkedListValue: any[];
                   if (data) {
+                    noteCollection = data.notes;
                     linkedListValue = JSON.parse(data.order);
-                    if (linkedListValue.includes(noteId)) {
+                    // console.log(linkedListValue);
+                    // if (linkedListValue.includes(noteId)) {
                       if (linkedListValue[0] !== noteId) {
-                        linkedListValue = remove(linkedListValue, noteId);
+                        // linkedListValue = remove(linkedListValue, noteId);
                         linkedListValue.unshift(noteId);
                       }
-                    }
+                    // }
                   } else {
                     linkedListValue = [noteId];
                   }
                   indexedDB().put(
                     uid,
                     {
+                      ...noteCollection,
                       [noteId]: {
                         noteId,
                         category: noteType,
