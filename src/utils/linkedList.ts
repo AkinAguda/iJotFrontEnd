@@ -1,13 +1,13 @@
-export interface LinkedListNodeType {
-  next: null | LinkedListNodeType;
-  prev: null | LinkedListNodeType;
-  value: any;
-}
-export interface LinkedListType {
-  head: LinkedListNodeType;
-  tail: LinkedListNodeType;
-  length: number;
-}
+// export interface LinkedListNodeType {
+//   next: null | LinkedListNodeType;
+//   prev: null | LinkedListNodeType;
+//   value: any;
+// }
+// export interface LinkedListType {
+//   head: LinkedListNodeType;
+//   tail: LinkedListNodeType;
+//   length: number;
+// }
 // import LinkedListNode, {LinkedListNodeType} from './linkedListNode';
 // class LinkedList {
 //     public head: LinkedListNode | null;
@@ -74,65 +74,69 @@ export interface LinkedListType {
 //     }
 // }
 
-export const LinkedList = (): LinkedListType => ({
-  length: 0,
-  head: null,
-  tail: null,
-});
+// const LinkedList = (): LinkedListType => ({
+//   length: 0,
+//   head: null,
+//   tail: null,
+// });
 
-export const append = (obj: LinkedListType, value: any): LinkedListType => {
-  const newNode: LinkedListNodeType = { value, next: null, prev: null };
-  if (!obj.tail) {
-    if (!obj.head) {
-      obj.head = newNode;
-    }
-    obj.tail = newNode;
-    return obj;
-  } else {
-    obj.tail.next = newNode;
-    newNode.prev = obj.tail;
-    obj.tail = newNode;
-  }
-  obj.length++;
-  return obj;
-};
+// export const append = (obj: LinkedListType, value: any): LinkedListType => {
+//   const newNode: LinkedListNodeType = { value, next: null, prev: null };
+//   if (!obj.tail) {
+//     if (!obj.head) {
+//       obj.head = newNode;
+//     }
+//     obj.tail = newNode;
+//     return obj;
+//   } else {
+//     obj.tail.next = newNode;
+//     newNode.prev = obj.tail;
+//     obj.tail = newNode;
+//   }
+//   obj.length++;
+//   return obj;
+// };
 
-export const prepend = (obj: LinkedListType, value: any): LinkedListType => {
-  const newNode: LinkedListNodeType = { value, next: null, prev: null };
-  if (!obj.head) {
-    if (!obj.tail) {
-      obj.tail = newNode;
-    }
-    obj.head = newNode;
-    obj.length++;
-    return obj;
-  } else {
-    obj.head.prev = newNode;
-    newNode.next = obj.head;
-    obj.head = newNode;
-  }
-  obj.length++;
-  return obj;
-};
-export const remove = (obj: LinkedListType, value: any): LinkedListType => {
-  let currentNode = obj.head;
-  while (currentNode.value !== value) {
-    currentNode = currentNode.next;
-  }
-  if (!currentNode.next) {
-    obj.tail = currentNode.prev;
-    obj.tail.next = null;
-    obj.length--;
-    return obj;
-  }
-  if (!currentNode.prev) {
-    obj.head = currentNode.next;
-    obj.head.prev = null;
-    obj.length--;
-    return obj;
-  }
-  currentNode.prev.next = currentNode.next;
-  currentNode.next.prev = currentNode.prev;
-  obj.length--;
-  return obj;
+// export const prepend = (obj: LinkedListType, value: any): LinkedListType => {
+//   const newNode: LinkedListNodeType = { value, next: null, prev: null };
+//   if (!obj.head) {
+//     if (!obj.tail) {
+//       obj.tail = newNode;
+//     }
+//     obj.head = newNode;
+//     obj.length++;
+//     return obj;
+//   } else {
+//     obj.head.prev = newNode;
+//     newNode.next = obj.head;
+//     obj.head = newNode;
+//   }
+//   obj.length++;
+//   return obj;
+// };
+// export const remove = (obj: LinkedListType, value: any): LinkedListType => {
+//   let currentNode = obj.head;
+//   while (currentNode.value !== value) {
+//     currentNode = currentNode.next;
+//   }
+//   if (!currentNode.next) {
+//     obj.tail = currentNode.prev;
+//     obj.tail.next = null;
+//     obj.length--;
+//     return obj;
+//   }
+//   if (!currentNode.prev) {
+//     obj.head = currentNode.next;
+//     obj.head.prev = null;
+//     obj.length--;
+//     return obj;
+//   }
+//   currentNode.prev.next = currentNode.next;
+//   currentNode.next.prev = currentNode.prev;
+//   obj.length--;
+//   return obj;
+// };
+
+export const remove = (arr: string[], value: string): string[] => {
+  return arr.filter((el: string) => el !== value);
 };

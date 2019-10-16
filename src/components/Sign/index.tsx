@@ -4,21 +4,20 @@ import { LOG_USER_IN } from '../../reducer/actions';
 import { Redirect, Link } from 'react-router-dom';
 import { UserStates } from '../../interfaces';
 import firebase from '../../Firebase';
-import Dexie from 'dexie';
 import Styles from './Sign.module.css';
 import Input from '../elements/iNput';
 import Ibutton from '../elements/Ibutton';
 import Pattern from '../elements/Pattern';
-import { Notes } from '../../utils/indexedDB';
+// import { Notes } from '../../utils/indexedDB';
 import {
   SignType,
   Credentials,
   GoogleFirebaseUserAuthCredentials,
 } from '../../interfaces';
 
-interface UserDatabase extends Dexie {
-  appUser?: Dexie.Table<{ id: string; notes: Notes }, number>;
-}
+// interface UserDatabase extends Dexie {
+//   appUser?: Dexie.Table<{ id: string; notes: Notes }, number>;
+// }
 
 const Sign: React.FC<SignType> = ({ signUp }: SignType): JSX.Element => {
   const dispatch = useDispatch();

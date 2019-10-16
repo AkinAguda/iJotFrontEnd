@@ -1,5 +1,5 @@
 import React from 'react';
-import indexedDB, { CollectionType } from '../../utils/indexedDB';
+import indexedDB from '../../utils/indexedDB';
 import { RichUtils } from 'draft-js';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -9,12 +9,6 @@ import { FooterType, UserStates } from '../../interfaces';
 import { ReactComponent as Check } from '../svgs/check.svg';
 import Styles from './index.module.css';
 import { noteStyles } from '../../utils';
-import {
-  LinkedListNodeType,
-  LinkedListType,
-  append,
-  prepend,
-} from '../../utils/linkedList';
 
 const Footer: React.FC<FooterType> = ({ check }: FooterType): JSX.Element => {
   const dispatch = useDispatch();
@@ -52,6 +46,7 @@ const Footer: React.FC<FooterType> = ({ check }: FooterType): JSX.Element => {
             check
               ? async (): Promise<void> => {
                   const data = await indexedDB().getNotes(uid);
+                  let noteCollection = {};
                   const noteId =
                     Math.random()
                       .toString(36)
@@ -59,25 +54,24 @@ const Footer: React.FC<FooterType> = ({ check }: FooterType): JSX.Element => {
                     Math.random()
                       .toString(36)
                       .substring(2, 15);
-                  let linkedListValue: LinkedListType;
+                  let linkedListValue: any[];
                   if (data) {
-                    console.log(data);
+                    noteCollection = data.notes;
                     linkedListValue = JSON.parse(data.order);
-                    // linkedListValue.prepend(noteId);
-                    linkedListValue = prepend(linkedListValue, noteId);
+                    // console.log(linkedListValue);
+                    // if (linkedListValue.includes(noteId)) {
+                      if (linkedListValue[0] !== noteId) {
+                        // linkedListValue = remove(linkedListValue, noteId);
+                        linkedListValue.unshift(noteId);
+                      }
+                    // }
                   } else {
-                    const tempLinkedList: LinkedListType = {
-                      head: null,
-                      tail: null,
-                      length: 0,
-                    };
-                    // tempLinkedList.prepend(noteId);
-                    const newTempLinkedList = prepend(tempLinkedList, noteId);
-                    linkedListValue = newTempLinkedList;
+                    linkedListValue = [noteId];
                   }
                   indexedDB().put(
                     uid,
                     {
+                      ...noteCollection,
                       [noteId]: {
                         noteId,
                         category: noteType,

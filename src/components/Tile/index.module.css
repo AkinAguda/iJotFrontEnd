@@ -12,19 +12,21 @@
 .color {
   width: 20px;
   height: 20px;
-  background-color: var(--primary);
   border-radius: 100%;
   align-self: center;
 }
-.container > div {
+.container .circleContainer {
   height: 100%;
   display: flex;
   justify-content: center;
-  /* text-overflow: ellipsis; */
+  text-overflow: ellipsis;
 }
-.container > .content {
+.container .content {
   display: block;
   padding-left: 20px;
+  width: 85%;
+  /* max-width: 70vw; */
+  word-wrap: break-word;
   /* height: 30px !important; */
 }
 .titleSpan {
@@ -59,11 +61,41 @@
   margin-top: 1px;
 }
 .status {
+  text-transform: capitalize;
   font-size: 12px;
-  color: var(--primary);
 }
 .date {
   font-size: 13px;
   color: var(--light);
   margin-left: auto;
+}
+.uncategorized {
+  color: var(--uncategorized);
+}
+.study {
+  color: var(--study);
+}
+.personal {
+  color: var(--personal);
+}
+.work {
+  color: var(--work);
+}
+.todo {
+  color: var(--todo);
+}
+.uncategorizedC {
+  background-color: var(--uncategorized);
+}
+.studyC {
+  background-color: var(--study);
+}
+.personalC {
+  background-color: var(--personal);
+}
+.workC {
+  background-color: var(--work);
+}
+.todoC {
+  background-color: var(--todo);
 }

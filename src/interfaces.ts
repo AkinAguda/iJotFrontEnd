@@ -86,3 +86,7 @@ export interface DBNoteType {
   title: string;
   editorState: any;
 }
+
+export interface TileTypes extends DBNoteType {
+  key: any;
+}
