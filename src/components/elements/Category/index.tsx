@@ -6,7 +6,7 @@ const Category: React.FunctionComponent<CategoryProps> = ({
   type, onClick,
 }: CategoryProps) => {
   return (
-    <div className={Styles.container} onClick={(): void => {onClick(); }} role="button" tabIndex={0} onKeyPress={(): void => {onClick();}}>
+    <div className={Styles.container} onClick={(): void => {onClick(); }} role="button" tabIndex={0} onKeyPress={(): void => {onClick(); }}>
       <div
         className={`${Styles.circle} ${Styles[type + 'C']}`}
       />

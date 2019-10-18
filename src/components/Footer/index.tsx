@@ -2,8 +2,8 @@ import React from 'react';
 import indexedDB from '../../utils/indexedDB';
 import { RichUtils } from 'draft-js';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { BOLD, ITALIC, REMOVE_STYLING } from '../../reducer/actions';
+import { Link, useHistory } from 'react-router-dom';
+import { BOLD, ITALIC, REMOVE_STYLING, SHOULD_FETCH_FROM_DB } from '../../reducer/actions';
 import Ibutton from '../elements/Ibutton';
 import { FooterType, UserStates } from '../../interfaces';
 import { ReactComponent as Check } from '../svgs/check.svg';
@@ -15,6 +15,7 @@ const Footer: React.FC<FooterType> = ({ check }: FooterType): JSX.Element => {
   const { bold, italic, editorState, uid, noteTitle, noteType } = useSelector(
     (state: UserStates) => state,
   );
+  const history = useHistory();
   return (
     <footer>
       <div className={Styles.footer}>
@@ -80,7 +81,12 @@ const Footer: React.FC<FooterType> = ({ check }: FooterType): JSX.Element => {
                       },
                     },
                     JSON.stringify(linkedListValue),
-                  );
+                  ).then(() => {
+                    dispatch({
+                      type: SHOULD_FETCH_FROM_DB,
+                    });
+                    history.push('/notes');
+                  });
                 }
               : null
           }

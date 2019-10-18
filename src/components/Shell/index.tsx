@@ -12,7 +12,7 @@ const Shell: React.FC<ShellTypeProps> = ({
   notes,
   edit,
 }: ShellTypeProps): JSX.Element => {
-  const { uid } = useSelector((state: UserStates) => state);
+  const { uid, shouldFetchFromDb } = useSelector((state: UserStates) => state);
   const [allNotes, setAllNotes] = useState<CollectionType | any>({});
   useEffect(() => {
     indexedDB()
@@ -20,8 +20,7 @@ const Shell: React.FC<ShellTypeProps> = ({
       .then((data: CollectionType) => {
         setAllNotes({ ...data });
       });
-  }, [uid]);
-  console.log('ALL', allNotes);
+  }, [uid, shouldFetchFromDb]);
   return (
     <div className={Styles.container}>
       <main>

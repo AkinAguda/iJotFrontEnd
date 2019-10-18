@@ -10,6 +10,7 @@ const initialState: UserStates = {
   editorState: EditorState.createEmpty(),
   noteTitle: '',
   noteType: 'personal',
+  shouldFetchFromDb: false,
 };
 
 const reducer = (
@@ -72,6 +73,12 @@ const reducer = (
       return {
         ...state,
         noteType: action.payload,
+      };
+    }
+    case actions.SHOULD_FETCH_FROM_DB: {
+      return {
+        ...state,
+        shouldFetchFromDb: !state.shouldFetchFromDb,
       };
     }
     default:
