@@ -57,6 +57,7 @@ export interface UserStates {
   editorState: EditorState;
   noteTitle: string;
   noteType: string;
+  shouldFetchFromDb: boolean;
 }
 
 export interface ProtectedRouteType {
