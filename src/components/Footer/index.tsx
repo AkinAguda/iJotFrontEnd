@@ -1,6 +1,6 @@
 import React from 'react';
 import indexedDB from '../../utils/indexedDB';
-import { RichUtils } from 'draft-js';
+import { RichUtils, convertToRaw } from 'draft-js';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { BOLD, ITALIC, REMOVE_STYLING, SHOULD_FETCH_FROM_DB } from '../../reducer/actions';
@@ -77,7 +77,7 @@ const Footer: React.FC<FooterType> = ({ check }: FooterType): JSX.Element => {
                         noteId,
                         category: noteType,
                         title: noteTitle,
-                        editorState: JSON.stringify(editorState),
+                        editorState: convertToRaw(editorState.getCurrentContent()),
                       },
                     },
                     JSON.stringify(linkedListValue),

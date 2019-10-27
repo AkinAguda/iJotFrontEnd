@@ -11,6 +11,7 @@ const initialState: UserStates = {
   noteTitle: '',
   noteType: 'personal',
   shouldFetchFromDb: false,
+  mode: null,
 };
 
 const reducer = (
@@ -79,6 +80,15 @@ const reducer = (
       return {
         ...state,
         shouldFetchFromDb: !state.shouldFetchFromDb,
+      };
+    }
+    case actions.LOAD_NOTE: {
+      return {
+        ...state,
+        editorState: action.payload.editorState,
+        noteType: action.payload.category,
+        noteTitle: action.payload.title,
+        mode: 'edit',
       };
     }
     default:

@@ -58,6 +58,7 @@ export interface UserStates {
   noteTitle: string;
   noteType: string;
   shouldFetchFromDb: boolean;
+  mode: 'edit' | null;
 }
 
 export interface ProtectedRouteType {
@@ -90,4 +91,5 @@ export interface DBNoteType {
 
 export interface TileTypes extends DBNoteType {
   key: any;
+  onClick: () => void;
 }

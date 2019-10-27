@@ -7,10 +7,11 @@ const Tile: React.FC<TileTypes> = ({
   category,
   title,
   editorState,
+  onClick,
 }: TileTypes): JSX.Element => {
-  const contentString = editorState._immutable.currentContent.blockMap[editorState._immutable.selection.anchorKey].text;
+  const contentString = editorState.getPlainText();
   return (
-  <div className={Styles.container}>
+  <div className={Styles.container} onClick={onClick}>
     <div className={Styles.circleContainer}>
       <div className={`${Styles.color} ${Styles[category + 'C']}`} />
     </div>
@@ -20,6 +21,7 @@ const Tile: React.FC<TileTypes> = ({
         <div className={Styles.trash} />
       </div>
       <div className={Styles.main}>
+        {/* {contentString.slice(0, 80) + (contentString.length > 80 ? '...' : '')} */}
         {contentString.slice(0, 80) + (contentString.length > 80 ? '...' : '')}
       </div>
       <div className={Styles.categorySpan}>
