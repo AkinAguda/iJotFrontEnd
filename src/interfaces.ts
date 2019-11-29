@@ -54,6 +54,7 @@ export interface UserStates {
   isLoggedIn: boolean;
   bold: boolean;
   italic: boolean;
+  noteId: string;
   editorState: EditorState;
   noteTitle: string;
   noteType: string;

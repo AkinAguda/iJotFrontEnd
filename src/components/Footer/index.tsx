@@ -9,10 +9,11 @@ import { FooterType, UserStates } from '../../interfaces';
 import { ReactComponent as Check } from '../svgs/check.svg';
 import Styles from './index.module.css';
 import { noteStyles } from '../../utils';
+import {remove} from '../../utils/linkedList';
 
 const Footer: React.FC<FooterType> = ({ check }: FooterType): JSX.Element => {
   const dispatch = useDispatch();
-  const { bold, italic, editorState, uid, noteTitle, noteType } = useSelector(
+  const { bold, italic, editorState, uid, noteTitle, noteType, mode, noteId: storeNoteId } = useSelector(
     (state: UserStates) => state,
   );
   const history = useHistory();
@@ -49,23 +50,23 @@ const Footer: React.FC<FooterType> = ({ check }: FooterType): JSX.Element => {
                   const data = await indexedDB().getNotes(uid);
                   let noteCollection = {};
                   const noteId =
-                    Math.random()
+                    mode !== 'edit' ? Math.random()
                       .toString(36)
                       .substring(2, 15) +
                     Math.random()
                       .toString(36)
-                      .substring(2, 15);
+                      .substring(2, 15) : storeNoteId;
                   let linkedListValue: any[];
                   if (data) {
                     noteCollection = data.notes;
                     linkedListValue = JSON.parse(data.order);
-                    // console.log(linkedListValue);
-                    // if (linkedListValue.includes(noteId)) {
+                    if (mode === 'edit') {
+                      linkedListValue = remove(linkedListValue, storeNoteId);
+                    }
                       if (linkedListValue[0] !== noteId) {
-                        // linkedListValue = remove(linkedListValue, noteId);
+
                         linkedListValue.unshift(noteId);
                       }
-                    // }
                   } else {
                     linkedListValue = [noteId];
                   }

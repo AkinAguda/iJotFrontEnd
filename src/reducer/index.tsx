@@ -6,6 +6,7 @@ const initialState: UserStates = {
   uid: '',
   isLoggedIn: false,
   italic: false,
+  noteId: '',
   bold: false,
   editorState: EditorState.createEmpty(),
   noteTitle: '',
@@ -89,6 +90,20 @@ const reducer = (
         noteType: action.payload.category,
         noteTitle: action.payload.title,
         mode: 'edit',
+        noteId: action.payload.noteId,
+      };
+    }
+    case actions.CLEAR_EDITOR: {
+      return {
+        ...state,
+        italic: false,
+        noteId: '',
+        bold: false,
+        editorState: EditorState.createEmpty(),
+        noteTitle: '',
+        noteType: 'personal',
+        shouldFetchFromDb: false,
+        mode: null,
       };
     }
     default:
