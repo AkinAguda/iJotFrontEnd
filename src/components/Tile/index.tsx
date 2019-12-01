@@ -1,14 +1,22 @@
 import React from 'react';
 import Styles from './index.module.css';
 import { TileTypes } from '../../interfaces';
+import indexedDB from '../../utils/indexedDB';
 
 const Tile: React.FC<TileTypes> = ({
-  // noteId,
+  noteId,
+  uid,
   category,
   title,
   editorState,
   onClick,
+  triggerRender,
 }: TileTypes): JSX.Element => {
+  const deleteNote = (userId: string, noteID: string): void => {
+    indexedDB().deleteNote(userId, noteID).then(() => {
+    triggerRender();
+    });
+  };
   const contentString = editorState.getPlainText();
   return (
   <div className={Styles.container} onClick={onClick}>
@@ -19,7 +27,10 @@ const Tile: React.FC<TileTypes> = ({
     <div className={Styles.content}>
       <div className={Styles.titleSpan}>
         <div className={Styles.title}>{title}</div>
-        <div className={Styles.trash} />
+        <div className={Styles.trash} onClick={(e:  React.MouseEvent<HTMLDivElement, MouseEvent>): void => {
+          e.stopPropagation();
+          deleteNote(uid, noteId);
+        }} />
       </div>
       <div className={Styles.main}>
         {/* {contentString.slice(0, 80) + (contentString.length > 80 ? '...' : '')} */}

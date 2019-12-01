@@ -68,7 +68,7 @@ const Edit: React.FC = (): JSX.Element => {
       <div className={Styles.title}>
         <input
           type="text"
-          placeholder="Lorem Ipsum Title"
+          placeholder="Note Title"
           value={noteTitle}
           onChange={(e: ChangeEvent<HTMLInputElement>): void => {
             handleInputChange(e);

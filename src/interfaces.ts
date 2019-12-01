@@ -85,6 +85,7 @@ export interface FooterType {
 
 export interface DBNoteType {
   noteId: string;
+  uid: string;
   category: string;
   title: string;
   editorState: any;
@@ -93,4 +94,5 @@ export interface DBNoteType {
 export interface TileTypes extends DBNoteType {
   key: any;
   onClick: () => void;
+  triggerRender: () => void;
 }

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { convertFromRaw, EditorState } from "draft-js";
+import { convertFromRaw, EditorState } from 'draft-js';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import indexedDB, { CollectionType } from '../../utils/indexedDB';
 import { ShellTypeProps, UserStates } from '../../interfaces';
-import { LOAD_NOTE } from '../../reducer/actions';
+import { LOAD_NOTE, SHOULD_FETCH_FROM_DB } from '../../reducer/actions';
 import Footer from '../Footer';
 import Tile from '../Tile';
 import Edit from '../Edit';
@@ -25,6 +25,9 @@ const Shell: React.FC<ShellTypeProps> = ({
         setAllNotes(data);
       });
   }, [uid, shouldFetchFromDb]);
+  const triggerRender = () => {
+    dispatch({type: SHOULD_FETCH_FROM_DB, payload: !shouldFetchFromDb});
+  };
   return (
     <div className={Styles.container}>
       <main>
@@ -42,6 +45,8 @@ const Shell: React.FC<ShellTypeProps> = ({
                       noteId={id}
                       category={allNotes.notes[id].category}
                       title={allNotes.notes[id].title}
+                      uid={uid}
+                      triggerRender={triggerRender}
                       onClick={(): void => {
                         convertFromRaw(allNotes.notes[id].editorState);
                         dispatch({type: LOAD_NOTE, payload: {
