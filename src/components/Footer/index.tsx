@@ -92,7 +92,7 @@ const Footer: React.FC<FooterType> = ({ check }: FooterType): JSX.Element => {
               : null
           }
         >
-          {check ? <Check /> : <Link to="/new">+</Link>}
+          {check ? <Check /> : <Link to="/new" className={Styles.plus}><div>+</div></Link>}
         </Ibutton>
         {check && (
           <Ibutton

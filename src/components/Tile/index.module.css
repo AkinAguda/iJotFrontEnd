@@ -25,10 +25,14 @@
 .container .content {
   display: block;
   padding-left: 20px;
-  width: 85%;
+  width: 100%;
   /* max-width: 70vw; */
   word-wrap: break-word;
   /* height: 30px !important; */
+}
+.block {
+  width: 100%;
+  display: flex;
 }
 .titleSpan {
   display: flex;

@@ -12,7 +12,8 @@ const Tile: React.FC<TileTypes> = ({
   const contentString = editorState.getPlainText();
   return (
   <div className={Styles.container} onClick={onClick}>
-    <div className={Styles.circleContainer}>
+    <div className={Styles.block}>
+      <div className={Styles.circleContainer}>
       <div className={`${Styles.color} ${Styles[category + 'C']}`} />
     </div>
     <div className={Styles.content}>
@@ -28,6 +29,7 @@ const Tile: React.FC<TileTypes> = ({
         <div className={`${Styles.status} ${Styles[category]}`}>{category}</div>
         <div className={Styles.date}>1 Jan 1970</div>
       </div>
+    </div>
     </div>
   </div>
 );
