@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { convertFromRaw, EditorState } from "draft-js";
+import { useSelector, useDispatch } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import indexedDB, { CollectionType } from '../../utils/indexedDB';
 import { ShellTypeProps, UserStates } from '../../interfaces';
+import { LOAD_NOTE } from '../../reducer/actions';
 import Footer from '../Footer';
 import Tile from '../Tile';
 import Edit from '../Edit';
@@ -12,13 +15,14 @@ const Shell: React.FC<ShellTypeProps> = ({
   notes,
   edit,
 }: ShellTypeProps): JSX.Element => {
-  const { uid, shouldFetchFromDb } = useSelector((state: UserStates) => state);
+  const dispatch = useDispatch();
+  const { uid, shouldFetchFromDb, mode } = useSelector((state: UserStates) => state);
   const [allNotes, setAllNotes] = useState<CollectionType | any>({});
   useEffect(() => {
     indexedDB()
       .getNotes(uid)
       .then((data: CollectionType) => {
-        setAllNotes({ ...data });
+        setAllNotes(data);
       });
   }, [uid, shouldFetchFromDb]);
   return (
@@ -34,15 +38,25 @@ const Shell: React.FC<ShellTypeProps> = ({
                   JSON.parse(allNotes.order).map((id: string) => (
                     <Tile
                       key={Math.random()}
-                      editorState={JSON.parse(allNotes.notes[id].editorState)}
+                      editorState={convertFromRaw(allNotes.notes[id].editorState)}
                       noteId={id}
                       category={allNotes.notes[id].category}
                       title={allNotes.notes[id].title}
+                      onClick={(): void => {
+                        convertFromRaw(allNotes.notes[id].editorState);
+                        dispatch({type: LOAD_NOTE, payload: {
+                        noteId: id,
+                        editorState: EditorState.createWithContent(convertFromRaw(allNotes.notes[id].editorState)),
+                        category: allNotes.notes[id].category,
+                        title: allNotes.notes[id].title,
+                      }});
+                    }}
                     />
                   ))}
               </>
             ))}
           {edit && <Edit />}
+          {mode === 'edit' && <Redirect to="/edit"/>}
         </div>
       </main>
       <Footer check={edit ? true : false} />

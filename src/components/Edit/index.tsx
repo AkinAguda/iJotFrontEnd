@@ -4,6 +4,7 @@ import {
   SET_EDITOR_STATE,
   EDIT_NOTE_TITLE,
   SET_NOTE_CATEGORY,
+  CLEAR_EDITOR,
 } from '../../reducer/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { UserStates } from '../../interfaces';
@@ -51,6 +52,9 @@ const Edit: React.FC = (): JSX.Element => {
       focusEditor(title);
     }
   });
+  useEffect(() => (): void => {
+    dispatch({type: CLEAR_EDITOR});
+  }, [dispatch]);
   const notes = [
     noteTypes.personal,
     noteTypes.study,
@@ -58,6 +62,7 @@ const Edit: React.FC = (): JSX.Element => {
     noteTypes.todo,
     noteTypes.work,
   ];
+
   return (
     <div className={Styles.container}>
       <div className={Styles.title}>

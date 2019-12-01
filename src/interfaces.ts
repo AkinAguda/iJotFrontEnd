@@ -54,10 +54,12 @@ export interface UserStates {
   isLoggedIn: boolean;
   bold: boolean;
   italic: boolean;
+  noteId: string;
   editorState: EditorState;
   noteTitle: string;
   noteType: string;
   shouldFetchFromDb: boolean;
+  mode: 'edit' | null;
 }
 
 export interface ProtectedRouteType {
@@ -90,4 +92,5 @@ export interface DBNoteType {
 
 export interface TileTypes extends DBNoteType {
   key: any;
+  onClick: () => void;
 }
