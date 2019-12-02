@@ -27,6 +27,7 @@ export interface Ibutton {
   onClick?: any;
   loading?: boolean;
   active?: boolean;
+  style?: React.CSSProperties;
 }
 
 export interface SignType extends RouteComponentProps {
@@ -96,3 +97,6 @@ export interface TileTypes extends DBNoteType {
   onClick: () => void;
   triggerRender: () => void;
 }
+
+export interface ModalProps {title: string; info: string; button1Text: string; button2Text: string;
+  button1Click: (args?: any) => void; button2Click: (args?: any) => void; }
