@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Styles from './index.module.css';
 import { TileTypes } from '../../interfaces';
 import indexedDB from '../../utils/indexedDB';
+import IModal from '../elements/IModal';
 
 const Tile: React.FC<TileTypes> = ({
   noteId,
@@ -17,9 +18,19 @@ const Tile: React.FC<TileTypes> = ({
     triggerRender();
     });
   };
+  const [showModal, toggleShowModal] = useState(false)
   const contentString = editorState.getPlainText();
   return (
   <div className={Styles.container} onClick={onClick}>
+            {showModal && <IModal title="Do you want to Delete this Note?" info="This action cannot be undone"
+            button1Text="Cancel" button2Text="Delete" button1Click={(e:  React.MouseEvent<HTMLDivElement, MouseEvent>): void  => {
+              e.stopPropagation();
+              toggleShowModal(false)}
+            }
+            button2Click={(e:  React.MouseEvent<HTMLDivElement, MouseEvent>): void => {
+              e.stopPropagation();
+          deleteNote(uid, noteId);
+        }} />}
     <div className={Styles.block}>
       <div className={Styles.circleContainer}>
       <div className={`${Styles.color} ${Styles[category + 'C']}`} />
@@ -29,8 +40,8 @@ const Tile: React.FC<TileTypes> = ({
         <div className={Styles.title}>{title}</div>
         <div className={Styles.trash} onClick={(e:  React.MouseEvent<HTMLDivElement, MouseEvent>): void => {
           e.stopPropagation();
-          deleteNote(uid, noteId);
-        }} />
+          toggleShowModal(true);
+          }} />
       </div>
       <div className={Styles.main}>
         {/* {contentString.slice(0, 80) + (contentString.length > 80 ? '...' : '')} */}
