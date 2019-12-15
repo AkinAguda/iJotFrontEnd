@@ -46,6 +46,7 @@ const Shell: React.FC<ShellTypeProps> = ({
                       category={allNotes.notes[id].category}
                       title={allNotes.notes[id].title}
                       uid={uid}
+                      date={allNotes.notes[id].date}
                       triggerRender={triggerRender}
                       onClick={(): void => {
                         convertFromRaw(allNotes.notes[id].editorState);

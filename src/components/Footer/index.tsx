@@ -78,6 +78,7 @@ const Footer: React.FC<FooterType> = ({ check }: FooterType): JSX.Element => {
                         noteId,
                         category: noteType,
                         title: noteTitle,
+                        date: new Date().toISOString(),
                         editorState: convertToRaw(editorState.getCurrentContent()),
                       },
                     },
