@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Styles from './index.module.css';
 import { TileTypes } from '../../interfaces';
 import indexedDB from '../../utils/indexedDB';
-import IModal from '../elements/IModal';
+import Imodal from '../elements/Imodal';
 
 const Tile: React.FC<TileTypes> = ({
   noteId,
@@ -23,7 +23,7 @@ const Tile: React.FC<TileTypes> = ({
   const contentString = editorState.getPlainText();
   return (
   <div className={Styles.container} onClick={onClick}>
-            {showModal && <IModal title="Do you want to Delete this Note?" info="This action cannot be undone"
+            {showModal && <Imodal title="Do you want to Delete this Note?" info="This action cannot be undone"
             button1Text="Cancel" button2Text="Delete" button1Click={(e:  React.MouseEvent<HTMLDivElement, MouseEvent>): void  => {
               e.stopPropagation();
               toggleShowModal(false)}
