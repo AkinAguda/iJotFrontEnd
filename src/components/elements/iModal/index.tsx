@@ -3,7 +3,7 @@ import Ibutton from '../Ibutton';
 import Styles from './index.module.css';
 import {ModalProps} from '../../../interfaces';
 
-const Imodal: React.FC<ModalProps> = ({title, info, button1Text, button1Click, button2Text, button2Click}):  JSX.Element => (
+const IModal: React.FC<ModalProps> = ({title, info, button1Text, button1Click, button2Text, button2Click}):  JSX.Element => (
     <div className={Styles.container}>
         <div className={Styles.modal}>
             {/* {children} */}
@@ -19,4 +19,4 @@ const Imodal: React.FC<ModalProps> = ({title, info, button1Text, button1Click, b
     </div>
 );
 
-export default Imodal;
+export default IModal;
