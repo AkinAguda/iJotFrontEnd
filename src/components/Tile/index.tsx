@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Styles from './index.module.css';
 import { TileTypes } from '../../interfaces';
 import indexedDB from '../../utils/indexedDB';
-import Imodal from '../elements/Imodal';
+import Imodal from '../elements/Imodal/index';
 
 const Tile: React.FC<TileTypes> = ({
   noteId,
