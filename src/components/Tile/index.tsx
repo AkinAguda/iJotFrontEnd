@@ -12,6 +12,7 @@ const Tile: React.FC<TileTypes> = ({
   editorState,
   onClick,
   triggerRender,
+  date
 }: TileTypes): JSX.Element => {
   const deleteNote = (userId: string, noteID: string): void => {
     indexedDB().deleteNote(userId, noteID).then(() => {
@@ -49,7 +50,7 @@ const Tile: React.FC<TileTypes> = ({
       </div>
       <div className={Styles.categorySpan}>
         <div className={`${Styles.status} ${Styles[category]}`}>{category}</div>
-        <div className={Styles.date}>1 Jan 1970</div>
+        <div className={Styles.date}>{new Date(date).toLocaleDateString()}</div>
       </div>
     </div>
     </div>

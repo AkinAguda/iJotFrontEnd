@@ -90,6 +90,7 @@ export interface DBNoteType {
   category: string;
   title: string;
   editorState: any;
+  date: string;
 }
 
 export interface TileTypes extends DBNoteType {
