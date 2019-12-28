@@ -108,7 +108,7 @@ const Sign: React.FC<SignType> = ({ signUp }: SignType): JSX.Element => {
     <div className={Styles.container}>
       <Pattern />
       <div className={Styles.main}>
-        <img src="/assets/images/logo.svg" alt="logo" />
+        <img src="/images/logo.svg" alt="logo" />
         <form>
           <Input
             type="text"
@@ -151,7 +151,7 @@ const Sign: React.FC<SignType> = ({ signUp }: SignType): JSX.Element => {
           }
           loading={isLoadingWithGoogle}
         >
-          <img src="/assets/images/google.svg" alt="google" />
+          <img src="/images/google.svg" alt="google" />
           <span>{signUp ? 'Sign Up' : 'Login'}</span>
         </Ibutton>
 

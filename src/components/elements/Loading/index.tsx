@@ -7,13 +7,13 @@ const Loading: React.FC = (): JSX.Element => (
     <Pattern />
     <div className={Styles.cards}>
       <div className={Styles.card}>
-        <img src="/assets/images/logo.svg" alt="logo" />
+        <img src="/images/logo.svg" alt="logo" />
       </div>
       <div className={Styles.card}>
-        <img src="/assets/images/logo.svg" alt="logo" />
+        <img src="/images/logo.svg" alt="logo" />
       </div>
       <div className={Styles.card}>
-        <img src="/assets/images/logo.svg" alt="logo" />
+        <img src="/images/logo.svg" alt="logo" />
       </div>
     </div>
   </div>

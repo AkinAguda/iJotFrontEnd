@@ -32,7 +32,7 @@ const INput: FunctionComponent<Input> = ({
             setInputType(inputType === 'password' ? 'text' : 'password')
           }
         >
-          <img src="/assets/images/see.svg" alt="eye" />
+          <img src="/images/see.svg" alt="eye" />
         </div>
       )}
     </div>

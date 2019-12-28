@@ -48,7 +48,7 @@
 .trash {
   height: 16px;
   width: 16px;
-  background-image: url('/assets/images/delete.svg');
+  background-image: url('/images/delete.svg');
   background-repeat: no-repeat;
   background-position: center;
   align-self: center;
