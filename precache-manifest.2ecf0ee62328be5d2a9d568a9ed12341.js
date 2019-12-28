@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "26d4d30d64ead61a01f7577c0e4c7e03",
+    "revision": "d841b92f2d42daf21efcfb448322b4c9",
     "url": "/iJotFrontEnd/index.html"
   },
   {
-    "revision": "90474a9c185741054497",
+    "revision": "60835f75fb8fda814097",
     "url": "/iJotFrontEnd/static/css/main.bfe71c3b.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/iJotFrontEnd/static/js/2.275421a6.chunk.js"
   },
   {
-    "revision": "90474a9c185741054497",
-    "url": "/iJotFrontEnd/static/js/main.c342d6db.chunk.js"
+    "revision": "60835f75fb8fda814097",
+    "url": "/iJotFrontEnd/static/js/main.e40c02e8.chunk.js"
   },
   {
     "revision": "fd4148f056b7a729f4f8",
