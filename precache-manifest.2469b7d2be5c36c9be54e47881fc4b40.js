@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "2a0bf6b7b1aa0ceeca1b296231b1da21",
+    "revision": "dd718a6653929b19130c38f157a832ae",
     "url": "/iJotFrontEnd/index.html"
   },
   {
-    "revision": "46469efb534f52437f69",
-    "url": "/iJotFrontEnd/static/css/main.e4d9d619.chunk.css"
+    "revision": "ae194de3cce545021e76",
+    "url": "/iJotFrontEnd/static/css/main.09b2b267.chunk.css"
   },
   {
     "revision": "c1a280277486c35d0022",
     "url": "/iJotFrontEnd/static/js/2.d0278ef0.chunk.js"
   },
   {
-    "revision": "46469efb534f52437f69",
-    "url": "/iJotFrontEnd/static/js/main.dd6b1252.chunk.js"
+    "revision": "ae194de3cce545021e76",
+    "url": "/iJotFrontEnd/static/js/main.b5cba519.chunk.js"
   },
   {
     "revision": "fd4148f056b7a729f4f8",
@@ -26,6 +26,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "d096301d2c8559228a2dde8e993403c4",
     "url": "/iJotFrontEnd/static/media/check.d096301d.svg"
+  },
+  {
+    "revision": "4806356326a5efc971769484599bc785",
+    "url": "/iJotFrontEnd/static/media/delete.48063563.svg"
   },
   {
     "revision": "09aea0f59807f6f4f66af7f5719cba9e",
