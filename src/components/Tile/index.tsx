@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {ReactComponent as DeleteImg} from '../svgs/delete.svg';
 import Styles from './index.module.css';
 import { TileTypes } from '../../interfaces';
 import indexedDB from '../../utils/indexedDB';
@@ -42,7 +43,7 @@ const Tile: React.FC<TileTypes> = ({
         <div className={Styles.trash} onClick={(e:  React.MouseEvent<HTMLDivElement, MouseEvent>): void => {
           e.stopPropagation();
           toggleShowModal(true);
-          }} />
+          }}><DeleteImg className={Styles.deleteImg}/></div>
       </div>
       <div className={Styles.main}>
         {/* {contentString.slice(0, 80) + (contentString.length > 80 ? '...' : '')} */}
