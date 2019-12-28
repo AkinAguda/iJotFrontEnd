@@ -2,6 +2,7 @@
   "name": "ijot",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://akinaguda.github.io/iJotFrontEnd",
   "dependencies": {
     "@types/draft-js": "0.10.35",
     "@types/jest": "24.0.15",
@@ -31,7 +32,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint:ts": "tslint 'src/**/*.{ts,tsx,js}'"
+    "lint:ts": "tslint 'src/**/*.{ts,tsx,js}'",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -56,6 +59,7 @@
     "enzyme": "3.10.0",
     "enzyme-adapter-react-16": "1.14.0",
     "enzyme-to-json": "3.4.0",
+    "gh-pages": "^2.1.1",
     "prettier": "1.18.2",
     "tslint": "5.17.0",
     "tslint-config-prettier": "1.18.0",
