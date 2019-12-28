@@ -25,7 +25,7 @@
   display: flex;
   justify-content: center;
 }
-.card img {
+.logo {
   transform: rotate(-40.73deg);
   align-self: center;
 }

@@ -34,3 +34,6 @@
   border-bottom-right-radius: 8px;
   transform: translateX(-2px);
 }
+.see {
+  transform: translateY(13px);
+}

@@ -1,4 +1,6 @@
 import React, { useState, KeyboardEvent } from 'react';
+import {ReactComponent as Logo} from '../svgs/logo.svg';
+import {ReactComponent as Google} from '../svgs/google.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { LOG_USER_IN } from '../../reducer/actions';
 import { Redirect, Link } from 'react-router-dom';
@@ -108,7 +110,7 @@ const Sign: React.FC<SignType> = ({ signUp }: SignType): JSX.Element => {
     <div className={Styles.container}>
       <Pattern />
       <div className={Styles.main}>
-        <img src="/images/logo.svg" alt="logo" />
+        <Logo className={Styles.logo} />
         <form>
           <Input
             type="text"
@@ -151,7 +153,7 @@ const Sign: React.FC<SignType> = ({ signUp }: SignType): JSX.Element => {
           }
           loading={isLoadingWithGoogle}
         >
-          <img src="/images/google.svg" alt="google" />
+          <Google className={Styles.googleImg} />
           <span>{signUp ? 'Sign Up' : 'Login'}</span>
         </Ibutton>
 

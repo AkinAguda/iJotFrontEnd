@@ -1,4 +1,5 @@
 import React, { useState, FunctionComponent } from 'react';
+import {ReactComponent as See} from '../../svgs/see.svg';
 import { Input } from '../../../interfaces';
 import Styles from './index.module.css';
 
@@ -32,7 +33,7 @@ const INput: FunctionComponent<Input> = ({
             setInputType(inputType === 'password' ? 'text' : 'password')
           }
         >
-          <img src="/images/see.svg" alt="eye" />
+          <See className={Styles.see}/>
         </div>
       )}
     </div>

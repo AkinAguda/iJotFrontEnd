@@ -1,7 +1,7 @@
 .header {
   display: flex;
 }
-.header > img {
+.logo {
   height: 45px;
   width: 60px;
 }

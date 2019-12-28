@@ -1,6 +1,7 @@
 import React, { KeyboardEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import { LOG_USER_OUT } from '../../reducer/actions';
+import {ReactComponent as Logo} from '../svgs/logo.svg';
 import firebase from '../../Firebase';
 import Ibutton from '../elements/Ibutton';
 import Styles from './index.module.css';
@@ -19,7 +20,7 @@ const Header: React.FC = (): JSX.Element => {
   return (
     <header>
       <div className={Styles.header}>
-        <img src="/images/logo.svg" alt="logo" />
+        <Logo className={Styles.logo} />
         <Ibutton
           sign={true}
           onClick={(e: KeyboardEvent<HTMLInputElement>): void => signUserOut(e)}
