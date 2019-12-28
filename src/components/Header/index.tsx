@@ -19,7 +19,7 @@ const Header: React.FC = (): JSX.Element => {
   return (
     <header>
       <div className={Styles.header}>
-        <img src="assets/images/logo.svg" alt="logo" />
+        <img src="/images/logo.svg" alt="logo" />
         <Ibutton
           sign={true}
           onClick={(e: KeyboardEvent<HTMLInputElement>): void => signUserOut(e)}
