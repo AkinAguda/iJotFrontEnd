@@ -1,26 +1,32 @@
 import React from 'react';
 import indexedDB from '../../utils/indexedDB';
-import { RichUtils, convertToRaw } from 'draft-js';
+import { 
+  // RichUtils,
+   convertToRaw } from 'draft-js';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
-import { BOLD, ITALIC, REMOVE_STYLING, SHOULD_FETCH_FROM_DB } from '../../reducer/actions';
+import { 
+  // BOLD, ITALIC, REMOVE_STYLING,  
+  SHOULD_FETCH_FROM_DB } from '../../reducer/actions';
 import Ibutton from '../elements/Ibutton';
 import { FooterType, UserStates } from '../../interfaces';
 import { ReactComponent as Check } from '../svgs/check.svg';
 import Styles from './index.module.css';
-import { noteStyles } from '../../utils';
+// import { noteStyles } from '../../utils';
 import {remove} from '../../utils/linkedList';
 
 const Footer: React.FC<FooterType> = ({ check }: FooterType): JSX.Element => {
   const dispatch = useDispatch();
-  const { bold, italic, editorState, uid, noteTitle, noteType, mode, noteId: storeNoteId } = useSelector(
+  const { 
+    // bold, italic,
+     editorState, uid, noteTitle, noteType, mode, noteId: storeNoteId } = useSelector(
     (state: UserStates) => state,
   );
   const history = useHistory();
   return (
     <footer>
       <div className={Styles.footer}>
-        {check && (
+        {/* {check && (
           <Ibutton
             smallCircle={true}
             onClick={(): void => {
@@ -41,7 +47,7 @@ const Footer: React.FC<FooterType> = ({ check }: FooterType): JSX.Element => {
           >
             B
           </Ibutton>
-        )}
+        )} */}
         <Ibutton
           circle={true}
           onClick={
@@ -95,7 +101,7 @@ const Footer: React.FC<FooterType> = ({ check }: FooterType): JSX.Element => {
         >
           {check ? <Check /> : <Link to="/new" className={Styles.plus}><div>+</div></Link>}
         </Ibutton>
-        {check && (
+        {/* {check && (
           <Ibutton
             smallCircle={true}
             onClick={(): void => {
@@ -116,7 +122,7 @@ const Footer: React.FC<FooterType> = ({ check }: FooterType): JSX.Element => {
           >
             <i>I</i>
           </Ibutton>
-        )}
+        )} */}
       </div>
     </footer>
   );

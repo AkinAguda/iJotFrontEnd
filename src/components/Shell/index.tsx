@@ -10,6 +10,7 @@ import Tile from '../Tile';
 import Edit from '../Edit';
 import Header from '../Header';
 import Styles from './index.module.css';
+import {ReactComponent as Empty} from '../svgs/empty.svg';
 
 const Shell: React.FC<ShellTypeProps> = ({
   notes,
@@ -34,6 +35,7 @@ const Shell: React.FC<ShellTypeProps> = ({
         <Header />
         <h1 className={Styles.title}>Notes</h1>
         <div className={Styles.content}>
+          {(allNotes && allNotes.id && !edit) && Object.keys(allNotes.notes).length === 0 ?  <div className={Styles.empty}><Empty /></div> : '' }
           {notes &&
             (allNotes && (
               <>

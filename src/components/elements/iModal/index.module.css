@@ -33,6 +33,7 @@
   border-radius: 8px;
   color: #410e61;
   padding: 10px 25px;
+  border: none;
 }
 .buttons :nth-child(2) {
   font-size: 18px;
