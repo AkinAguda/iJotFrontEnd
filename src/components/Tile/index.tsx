@@ -3,7 +3,7 @@ import {ReactComponent as DeleteImg} from '../svgs/delete.svg';
 import Styles from './index.module.css';
 import { TileTypes } from '../../interfaces';
 import indexedDB from '../../utils/indexedDB';
-import Imodal from '../elements/Imodal';
+import Imodal from '../elements/IModal';
 
 const Tile: React.FC<TileTypes> = ({
   noteId,
